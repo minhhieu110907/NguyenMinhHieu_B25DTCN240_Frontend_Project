@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Chuyên mục</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/admin_global.css">
+    <link rel="stylesheet" href="../CSS/entries_manager.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search user">
+                </div>
+                <div class="top-right">
+                    <i class="fa-solid fa-envelope"></i>
+                    <i class="fa-solid fa-bell"></i>
+                    <img src="https://i.pravatar.cc/40" alt="Avatar" class="avatar">
+                </div>
+            </header>
+
+            <div class="search-header">
+                <div class="search-box full-width">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="category-search-input" placeholder="Search Article Categories">
+                </div>
+            </div>
+
+            <div class="category-wrapper">
+                <section class="form-box">
+                    <h2><i class="fa-solid fa-folder-plus"></i> Manage Categories</h2>
+                    <div class="form-group">
+                        <label>Category Name:</label>
+                        <input type="text" id="category-name-input" placeholder="Enter category name">
+                        <button class="btn-add-cat" id="btn-save-category">Add Category</button>
+                    </div>
+                </section>
+
+                <section class="list-box">
+                    <h3><i class="fa-solid fa-table-list"></i> Category List</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th width="10%">#</th>
+                                <th width="60%">Category Name</th>
+                                <th width="30%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="category-table-body">
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <div class="pagination" id="user-pagination">
+                <button class="page-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                <div class="page-numbers">
+                    <button class="page-number active">1</button>
+                    <button class="page-number">2</button>
+                    <span class="dots">...</span>
+                    <button class="page-number">10</button>
+                </div>
+                <button class="page-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <script src="../JS/storage.js"></script>
+    <script src="../JS/entries_manager.js"></script>
+    <script>window.onload = () => loadMenu('menu-entries');</script>
+</body>
+
+</html>

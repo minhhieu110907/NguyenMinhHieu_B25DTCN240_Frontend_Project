@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Article</title>
+    <link rel="stylesheet" href="../CSS/form_post.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="flex items-center gap-3">
+                <div class="icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <h1>Add New Article</h1>
+            </div>
+            <button class="close-btn">&times;</button>
+        </div>
+
+        <div class="form-content">
+
+            <!-- Title -->
+            <div class="form-group">
+                <label>Title:</label>
+                <input type="text" placeholder="Enter article title...">
+            </div>
+
+            <!-- Article Categories -->
+            <div class="form-group">
+                <label>Article Categories:</label>
+                <input type="text" placeholder="e.g. Technology, Programming, AI">
+            </div>
+
+            <!-- Mood -->
+            <div class="form-group">
+                <label for="mood">Mood:</label>
+                <select id="mood" name="mood">
+                    <option value="">-- Select your mood --</option>
+                    <option value="happy">😊 Happy</option>
+                    <option value="sad">😢 Sad</option>
+                    <option value="excited">🤩 Excited</option>
+                    <option value="angry">😡 Angry</option>
+                    <option value="tired">😴 Tired</option>
+                    <option value="love">😍 In Love</option>
+                    <option value="confused">😕 Confused</option>
+                    <option value="bored">😐 Bored</option>
+                    <option value="relaxed">😌 Relaxed</option>
+                    <option value="nervous">😬 Nervous</option>
+                    <option value="cool">😎 Cool</option>
+                    <option value="sick">🤒 Sick</option>
+                    <option value="thinking">🤔 Thinking</option>
+                    <option value="crying">😭 Crying</option>
+                    <option value="sleepy">🥱 Sleepy</option>
+                    <option value="grateful">🙏 Grateful</option>
+                    <option value="lonely">🥺 Lonely</option>
+                    <option value="motivated">💪 Motivated</option>
+                    <option value="frustrated">😤 Frustrated</option>
+                    <option value="surprised">😲 Surprised</option>
+                    <option value="proud">😌 Proud</option>
+                    <option value="anxious">😰 Anxious</option>
+                    <option value="peaceful">🕊️ Peaceful</option>
+                    <option value="curious">🧐 Curious</option>
+                    <option value="shy">🙈 Shy</option>
+                </select>
+            </div>
+
+            <!-- Content -->
+            <div class="form-group">
+                <label>Content:</label>
+                <textarea rows="12" placeholder="Write your article content here..."></textarea>
+            </div>
+
+            <!-- Status -->
+            <div class="form-group">
+                <label>Status</label>
+                <div class="status-options">
+                    <label class="radio-label">
+                        <input type="radio" name="status">
+                        <span>Public</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="status">
+                        <span>Private</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Upload -->
+            <div class="form-group">
+                <label>Upload Image / File</label>
+                <div class="upload-area">
+                    <div class="upload-icon">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                    </div>
+                    <p>Browse and choose the files you want<br>to upload from your computer</p>
+                    <input type="file" id="file-upload" hidden>
+                    <button type="button" onclick="document.getElementById('file-upload').click()" class="upload-btn">
+                        Choose File
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add Button -->
+            <button class="add-btn">Add</button>
+        </div>
+    </div>
+
+
+    <script src="../JS/form_post.js"></script>
+</body>
+
+</html>

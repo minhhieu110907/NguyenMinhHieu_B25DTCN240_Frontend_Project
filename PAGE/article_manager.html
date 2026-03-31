@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Bài viết</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/admin_global.css">
+    <link rel="stylesheet" href="../CSS/article-manager.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search articles">
+        </div>
+        <div class="top-right">
+            <i class="fa-solid fa-envelope"></i>
+            <i class="fa-solid fa-bell"></i>
+            <img src="https://i.pravatar.cc/40" alt="Avatar" class="avatar">
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="sidebar-container"></div>
+
+        <main class="main-content">
+            <a href="../pages/form_addBlog.html">
+                <a href="../PAGE/form_post.html"><button class="btn-add-article">Thêm mới bài viết</button></a>
+            </a>
+
+            <h1>Quản lý bài viết</h1>
+
+            <table class="article-table">
+                <thead>
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>Tiêu đề</th>
+                        <th>Chủ đề</th>
+                        <th>Nội dung</th>
+                        <th>Trạng thái</th>
+                        <th>Chỉnh sửa trạng thái</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="https://picsum.photos/id/20/80/60" alt=""></td>
+                        <td>Học nấu cà sốt cà chua</td>
+                        <td>Nấu ăn</td>
+                        <td>Tôi đã học được cách nấu ăn...</td>
+                        <td><span class="status public">Public</span></td>
+                        <td><select>
+                                <option>Public</option>
+                                <option>Private</option>
+                            </select></td>
+                        <td>
+                            <button class="btn-edit">Sửa</button>
+                            <button class="btn-delete">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination" id="user-pagination">
+                <button class="page-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
+                <div class="page-numbers">
+                    <button class="page-number active">1</button>
+                    <button class="page-number">2</button>
+                    <span class="dots">...</span>
+                    <button class="page-number">10</button>
+                </div>
+                <button class="page-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            
+        </main>
+    </div>
+
+    <script src="../JS/storage.js"></script>
+    <script src="../JS/article_manager.js"></script>
+    <script>window.onload = () => loadMenu('menu-article');</script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login UI</title>
+
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="wrapper" id="wrapper">
+
+        <div class="container" id="container">
+
+            <div class="images" id="imageBox">
+                <img src="../ASSET/images/draw2.webp.png" alt="login image" id="loginImage">
+            </div>
+
+            <form class="login" id="loginForm">
+
+                <div class="social-login" id="socialLogin">
+                    <span id="socialText">Sign in with</span>
+                    <div class="icons" id="socialIcons">
+                        <i class="fa-brands fa-square-facebook" id="fbIcon"></i>
+                        <i class="fa-brands fa-square-twitter" id="twIcon"></i>
+                        <i class="fa-brands fa-linkedin" id="lnIcon"></i>
+                    </div>
+                </div>
+
+                <p class="or" id="orText">Or</p>
+
+                <div class="form-group" id="emailGroup">
+                    <input type="email" id="email" placeholder="Enter a valid email address">
+                    <label for="email">Email address</label>
+                </div>
+
+                <div class="form-group" id="passwordGroup">
+                    <input type="password" id="password" placeholder="Enter password">
+                    <label for="password">Password</label>
+                </div>
+
+                <button type="submit" id="loginBtn">Login</button>
+
+                <p class="register-text" id="registerText">
+                    Don't have an account?
+                    <a href="../PAGE/register.html" id="registerLink">Register</a>
+                </p>
+
+            </form>
+
+        </div>
+
+        <footer id="footer">
+            <p id="copyright">Copyright © 2025. All rights reserved.</p>
+
+            <div class="footer-icons" id="footerIcons">
+                <i class="fa-brands fa-facebook-f" id="footerFb"></i>
+                <i class="fa-brands fa-twitter" id="footerTw"></i>
+                <i class="fa-brands fa-google" id="footerGg"></i>
+                <i class="fa-brands fa-linkedin-in" id="footerLn"></i>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
