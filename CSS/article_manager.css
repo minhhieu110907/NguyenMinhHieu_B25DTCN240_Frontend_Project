@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f3f4f8;
+}
+
+.admin-topbar {
+    height: 64px;
+    border-bottom: 1px solid #eaecf3;
+    background: #f8f9fc;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24px;
+}
+
+.admin-topbar__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-topbar__icon-btn {
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.admin-topbar__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+}
+
+.admin-layout {
+    display: flex;
+}
+
+.admin-main {
+    flex: 1;
+    padding: 18px 20px;
+}
+
+.article-panel {
+    background: #ffffff;
+    border: 1px solid #eaecf3;
+    min-height: calc(100vh - 104px);
+    padding: 28px 26px;
+}
+
+.article-panel__head {
+    margin-bottom: 12px;
+}
+
+.article-panel__create-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background: #6a4dd8;
+    border-radius: 999px;
+    font-size: 12px;
+    padding: 10px 20px;
+    margin-bottom: 8px;
+}
+
+.article-panel__title {
+    text-align: center;
+    margin: 0 0 12px;
+    font-size: 40px;
+}
+
+.article-table-wrapper {
+    border: 1px solid #e4e7ec;
+}
+
+.article-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.article-table th,
+.article-table td {
+    border-bottom: 1px solid #e4e7ec;
+    padding: 10px 8px;
+    text-align: left;
+}
+
+.article-image {
+    width: 54px;
+    height: 38px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.article-status {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-weight: 600;
+    font-size: 10px;
+}
+
+.article-status--public {
+    color: #039855;
+    background: #d1fadf;
+}
+
+.article-status--private {
+    color: #b42318;
+    background: #fee4e2;
+}
+
+.article-status-select {
+    border: 1px solid #d0d5dd;
+    border-radius: 4px;
+    font-size: 11px;
+    padding: 5px 8px;
+}
+
+.article-action {
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 11px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.article-action--edit {
+    background: #22c55e;
+}
+
+.article-action--delete {
+    background: #ef4444;
+}

@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    background: #FFFFFF;
     height: 100vh;
 }
 
@@ -28,6 +28,8 @@ body {
 }
 
 .images img {
+    margin-right: 200px;
+    scale: 1.2;
     width: 420px;
     max-width: 100%;
 }
@@ -43,6 +45,10 @@ body {
     margin-bottom: 20px;
 }
 
+#socialText, #orText {
+    margin-left: -30px;
+}
+
 .icons i {
     font-size: 28px;
     color: #1877f2;
@@ -56,24 +62,27 @@ body {
 }
 
 .form-group {
+    scale: 1.2;
     margin-bottom: 18px;
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px;
+    padding: 13px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 .form-group label {
     display: block;
-    margin-top: 6px;
+    margin-top: 12px;
     font-size: 13px;
 }
 
 button {
     width: 120px;
+    margin-top: 40px;
+    margin-left: -30px;
     padding: 12px;
     background: #1877f2;
     color: white;
@@ -85,6 +94,7 @@ button {
 .register-text {
     margin-top: 15px;
     font-size: 13px;
+    margin-left: -30px;
 }
 
 .register-text a {
@@ -97,7 +107,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 40px 40px;
 }
 
 .footer-icons i {

@@ -1,83 +1,176 @@
-.content-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f3f4f8;
+    color: #101828;
 }
 
-.badge {
-  background-color: #f3e8ff;
-  color: #7e22ce;
-  padding: 4px 10px;
-  border-radius: 99px;
-  font-size: 12px;
-  margin-left: 8px;
+.admin-page {
+    min-height: 100vh;
 }
 
-.search-box {
-  position: relative;
-  width: 300px;
+.admin-topbar {
+    height: 64px;
+    border-bottom: 1px solid #eaecf3;
+    background: #f8f9fc;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24px;
 }
 
-.search-box i {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
+.admin-topbar__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.search-box input {
-  width: 100%;
-  padding: 10px 10px 10px 36px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  outline: none;
+.admin-topbar__icon-btn {
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-/* Table User Specific */
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.admin-topbar__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+.admin-layout {
+    display: flex;
 }
 
-.username {
-  color: #6b7280;
-  font-size: 12px;
+.admin-main {
+    flex: 1;
+    padding: 18px 20px;
 }
 
-.status-active {
-  background-color: #ecfdf5;
-  color: #059669;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
+.admin-panel {
+    background: #ffffff;
+    border: 1px solid #eaecf3;
+    min-height: calc(100vh - 104px);
+    padding: 28px 26px;
 }
 
-.btn-block,
-.btn-unblock {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 13px;
-  margin-right: 4px;
+.user-manager__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
 }
 
-.btn-block {
-  background: #fee2e2;
-  color: #dc2626;
+.user-manager__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
 }
 
-.btn-unblock {
-  background: #eff6ff;
-  color: #2563eb;
+.user-manager__badge {
+    margin-left: 10px;
+    background: #f0e7ff;
+    color: #8356e8;
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 12px;
+}
+
+.user-manager__search {
+    width: 320px;
+    max-width: 100%;
+    border: 1px solid #eceef4;
+    border-radius: 4px;
+    background: #ffffff;
+    position: relative;
+}
+
+.user-manager__search i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #667085;
+}
+
+.user-manager__search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    padding: 11px 10px 11px 30px;
+}
+
+.user-table-wrapper {
+    border: 1px solid #dbe4f0;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.user-table th {
+    text-align: left;
+    color: #4b5563;
+    padding: 10px 14px;
+    border-bottom: 1px solid #e4e7ec;
+}
+
+.user-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eef1f6;
+    color: #4b5563;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-cell__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.user-cell__name {
+    margin: 0;
+    color: #111827;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.user-cell__username {
+    margin: 2px 0 0;
+    color: #98a2b3;
+    font-size: 11px;
+}
+
+.user-status {
+    color: #101828;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.user-action {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.user-action--block {
+    color: #7f56d9;
+}
+
+.user-action--unblock {
+    color: #3b82f6;
 }

@@ -1,20 +1,21 @@
-<aside class="sidebar">
-    <div class="sidebar-logo">
-        <h2>Admin Panel</h2>
-    </div>
-    <nav class="menu">
-        <a href="user_manager.html" class="menu-item" id="menu-user">
-            <i class="fa-solid fa-users"></i> Manage Users
+<aside class="admin-menu" id="adminMenu">
+    <div class="admin-menu__brand" id="adminMenuBrand">admin_customer</div>
+    <nav class="admin-menu__nav" id="adminMenuNav">
+        <a class="admin-menu__item" id="menuUsersLink" href="./user_manager.html">
+            <span class="admin-menu__icon"><i class="fa-solid fa-users"></i></span>
+            <span class="admin-menu__label">Manage Users</span>
         </a>
-        <a href="entries_manager.html" class="menu-item" id="menu-entries">
-            <i class="fa-solid fa-list"></i> Manage Entries
+        <a class="admin-menu__item" id="menuEntriesLink" href="./entries_manager.html">
+            <span class="admin-menu__icon"><i class="fa-regular fa-rectangle-list"></i></span>
+            <span class="admin-menu__label">Manage Entries</span>
         </a>
-        <a href="article_manager.html" class="menu-item" id="menu-article">
-            <i class="fa-solid fa-file-pen"></i> Manage Article
+        <a class="admin-menu__item" id="menuArticlesLink" href="./article_manager.html">
+            <span class="admin-menu__icon"><i class="fa-regular fa-newspaper"></i></span>
+            <span class="admin-menu__label">Manage Article</span>
         </a>
-        <hr>
-        <a href="login.html" class="menu-item logout">
-            <i class="fa-solid fa-right-from-bracket"></i> Log out
+        <a class="admin-menu__item admin-menu__item--logout" id="menuLogoutLink" href="./login.html">
+            <span class="admin-menu__icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+            <span class="admin-menu__label">Log out</span>
         </a>
     </nav>
 </aside>

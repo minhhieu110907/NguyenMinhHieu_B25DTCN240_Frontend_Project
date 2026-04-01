@@ -1,85 +1,109 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
-    <title>Quản lý Bài viết</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../CSS/admin_global.css">
-    <link rel="stylesheet" href="../CSS/article-manager.css">
+    <link rel="stylesheet" href="../CSS/menu.css">
+    <link rel="stylesheet" href="../CSS/article_manager.css">
+    <link rel="stylesheet" href="../CSS/admin_pagination.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
 </head>
-
 <body>
-    <header class="topbar">
-        <div class="search-container">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search articles">
-        </div>
-        <div class="top-right">
-            <i class="fa-solid fa-envelope"></i>
-            <i class="fa-solid fa-bell"></i>
-            <img src="https://i.pravatar.cc/40" alt="Avatar" class="avatar">
-        </div>
-    </header>
-
-    <div class="container">
-        <div id="sidebar-container"></div>
-
-        <main class="main-content">
-            <a href="../pages/form_addBlog.html">
-                <a href="../PAGE/form_post.html"><button class="btn-add-article">Thêm mới bài viết</button></a>
-            </a>
-
-            <h1>Quản lý bài viết</h1>
-
-            <table class="article-table">
-                <thead>
-                    <tr>
-                        <th>Ảnh</th>
-                        <th>Tiêu đề</th>
-                        <th>Chủ đề</th>
-                        <th>Nội dung</th>
-                        <th>Trạng thái</th>
-                        <th>Chỉnh sửa trạng thái</th>
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="https://picsum.photos/id/20/80/60" alt=""></td>
-                        <td>Học nấu cà sốt cà chua</td>
-                        <td>Nấu ăn</td>
-                        <td>Tôi đã học được cách nấu ăn...</td>
-                        <td><span class="status public">Public</span></td>
-                        <td><select>
-                                <option>Public</option>
-                                <option>Private</option>
-                            </select></td>
-                        <td>
-                            <button class="btn-edit">Sửa</button>
-                            <button class="btn-delete">Xóa</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="pagination" id="user-pagination">
-                <button class="page-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
-                <div class="page-numbers">
-                    <button class="page-number active">1</button>
-                    <button class="page-number">2</button>
-                    <span class="dots">...</span>
-                    <button class="page-number">10</button>
-                </div>
-                <button class="page-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+    <div class="admin-page" id="articleManagerPage">
+        <header class="admin-topbar">
+            <div class="admin-topbar__right">
+                <button class="admin-topbar__icon-btn" type="button"><i class="fa-regular fa-envelope"></i></button>
+                <button class="admin-topbar__icon-btn" type="button"><i class="fa-regular fa-bell"></i></button>
+                <img class="admin-topbar__avatar" src="https://i.pravatar.cc/36?img=12" alt="Admin avatar">
             </div>
-            
-        </main>
+        </header>
+
+        <div class="admin-layout">
+            <aside class="admin-menu" id="adminMenu">
+                <div class="admin-menu__brand">admin_article</div>
+                <nav class="admin-menu__nav">
+                    <a class="admin-menu__item" id="menuUsersLink" href="./user_manager.html"><span class="admin-menu__icon"><i class="fa-solid fa-users"></i></span><span class="admin-menu__label">Manage Users</span></a>
+                    <a class="admin-menu__item" id="menuEntriesLink" href="./entries_manager.html"><span class="admin-menu__icon"><i class="fa-regular fa-rectangle-list"></i></span><span class="admin-menu__label">Manage Entries</span></a>
+                    <a class="admin-menu__item admin-menu__item--active" id="menuArticlesLink" href="./article_manager.html"><span class="admin-menu__icon"><i class="fa-regular fa-newspaper"></i></span><span class="admin-menu__label">Manage Article</span></a>
+                    <a class="admin-menu__item admin-menu__item--logout" id="menuLogoutLink" href="./login.html"><span class="admin-menu__icon"><i class="fa-solid fa-right-from-bracket"></i></span><span class="admin-menu__label">Log out</span></a>
+                </nav>
+            </aside>
+
+            <main class="admin-main">
+                <section class="article-panel" id="articlePanel">
+                    <div class="article-panel__head">
+                        <a class="article-panel__create-btn" id="createArticleButton" href="./form_post.html">Thêm mới bài viết</a>
+                        <h1 class="article-panel__title">Quản lý bài viết</h1>
+                    </div>
+
+                    <div class="article-table-wrapper">
+                        <table class="article-table" id="articleTable">
+                            <thead>
+                                <tr>
+                                    <th>Ảnh</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Chủ đề</th>
+                                    <th>Nội dung</th>
+                                    <th>Trạng thái</th>
+                                    <th>Chỉnh sửa trạng thái</th>
+                                    <th>Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="articleTableBody">
+                                <tr>
+                                    <td><img class="article-image" src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=100&q=80" alt="Nấu ăn"></td>
+                                    <td>Học nấu cà sốt cà chua</td>
+                                    <td>Nấu ăn</td>
+                                    <td>Mô tả học được cách nấu ăn...</td>
+                                    <td><span class="article-status article-status--public">Public</span></td>
+                                    <td>
+                                        <select class="article-status-select" id="articleStatusSelect1">
+                                            <option value="public">Public</option>
+                                            <option value="private">Private</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="article-action article-action--edit" id="editArticleBtn1" type="button">Sửa</button>
+                                        <button class="article-action article-action--delete" id="deleteArticleBtn1" type="button">Xóa</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img class="article-image" src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=100&q=80" alt="IT"></td>
+                                    <td>Bí kíp viết CV ngành IT</td>
+                                    <td>IT</td>
+                                    <td>Chia sẻ cách viết CV ấn tượng...</td>
+                                    <td><span class="article-status article-status--private">Private</span></td>
+                                    <td>
+                                        <select class="article-status-select" id="articleStatusSelect2">
+                                            <option value="private">Private</option>
+                                            <option value="public">Public</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="article-action article-action--edit" id="editArticleBtn2" type="button">Sửa</button>
+                                        <button class="article-action article-action--delete" id="deleteArticleBtn2" type="button">Xóa</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="admin-pagination" id="articlePagination">
+                        <button class="admin-pagination__button" id="articlePaginationPrevious" type="button"><i class="fa-solid fa-arrow-left"></i><span>Previous</span></button>
+                        <div class="admin-pagination__numbers">
+                            <button class="admin-pagination__number admin-pagination__number--active" id="articlePage1" type="button">1</button>
+                            <button class="admin-pagination__number" id="articlePage2" type="button">2</button>
+                            <button class="admin-pagination__number" id="articlePage3" type="button">3</button>
+                            <span class="admin-pagination__dots">...</span>
+                            <button class="admin-pagination__number" id="articlePage10" type="button">10</button>
+                        </div>
+                        <button class="admin-pagination__button" id="articlePaginationNext" type="button"><span>Next</span><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
-
-    <script src="../JS/storage.js"></script>
-    <script src="../JS/article_manager.js"></script>
-    <script>window.onload = () => loadMenu('menu-article');</script>
 </body>
-
 </html>

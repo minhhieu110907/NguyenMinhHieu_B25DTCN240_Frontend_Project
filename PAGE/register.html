@@ -1,63 +1,55 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký - RIKKEI EDUCATION</title>
-    <link rel="stylesheet" href="../CSS/register.css">
-    <link rel="stylesheet" href="../CSS/responsive.css">
+    <title>Register - Rikkeisoft</title>
+    <link rel="stylesheet" href="../css/register.css">
 </head>
-
 <body>
 
-    <div class="blob-container">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
+    <img src="../ASSET/images/Hai cầu tím trên nền xanh.png" class="bg-image" alt="background">
 
-    <div class="wrapper">
-        <div class="content-left">
-            <h1 id="main-title">Welcome to the website</h1>
-            <p id="sub-title">RIKKEI EDUCATION</p>
+    <div class="container">
+        <div class="left-content">
+            <h1>Welcome to the website</h1>
+            <p>RIKKEI EDUCATION</p>
         </div>
 
-        <div class="form-card">
-            <form id="registerForm">
-                <div class="row">
-                    <div class="input-box">
-                        <input type="text" id="firstName-input">
-                        <label>First name</label>
-                    </div>
-                    <div class="input-box">
-                        <input type="text" id="lastName-Input">
-                        <label>Last name</label>
-                    </div>
+        <div class="form-box">
+            <div class="name-row">
+                <div>
+                    <input type="text">
+                    <label>First name</label>
                 </div>
-
-                <div class="input-box full">
-                    <input type="email" id="email-Input">
-                    <label>Email address</label>
+                <div>
+                    <input type="text">
+                    <label>Last name</label>
                 </div>
+            </div>
 
-                <div class="input-box full">
-                    <input type="password" id="password-Input">
-                    <label>Password</label>
-                </div>
+            <div class="input-group">
+                <input type="email">
+                <label>Email address</label>
+            </div>
 
-                <div class="input-box full">
-                    <input type="password" id="confirm-Input">
-                    <label>Confirm Password</label>
-                </div>
+            <div class="input-group">
+                <input type="password">
+                <label>Password</label>
+            </div>
 
-                <button type="submit" id="signup-submit">Sign up</button>
+            <div class="input-group">
+                <input type="password">
+                <label>Confirm Password</label>
+            </div>
 
-                <p class="footer-text">
-                    Already have an account? <a href="../PAGE/login.html" id="m">Login</a>
-                </p>
-            </form>
+            <button type="submit">Sign up</button>
+
+            <p class="login-text">
+                Already have an account? <a href="../PAGE/login.html">Login</a>
+            </p>
         </div>
     </div>
+
 </body>
-
 </html>

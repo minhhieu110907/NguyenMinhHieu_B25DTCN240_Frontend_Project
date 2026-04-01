@@ -1,0 +1,44 @@
+.admin-pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-pagination__button {
+    border: 1px solid #dde1ea;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #6b7280;
+    font-size: 12px;
+    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.admin-pagination__numbers {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-pagination__number {
+    border: none;
+    background: transparent;
+    color: #8f95a3;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-pagination__number--active {
+    color: #8b5cf6;
+}
+
+.admin-pagination__dots {
+    color: #9ca3af;
+    font-size: 12px;
+}

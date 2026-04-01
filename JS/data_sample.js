@@ -1,6 +1,3 @@
-// JS/data_sample.js
-
-// Dữ liệu mẫu cho người dùng (Dựa trên ảnh 1)
 export const users = [
     {
         id: 1,
@@ -8,6 +5,7 @@ export const users = [
         lastname: "Minh Thu",
         email: "minhthu@gmail.com",
         password: "123456",
+        role: "user"
     },
     {
         id: 2,
@@ -15,10 +13,18 @@ export const users = [
         lastname: "Hồng Vân",
         email: "hongvan@yahoo.com",
         password: "abc123",
+        role: "user"
+    },
+    {
+        id: 3,
+        firstname: "Nguyễn",
+        lastname: "Minh Hiếu",
+        email: "minhhieu19692016@gmail.com",
+        password: "152duongkenh",
+        role: "admin"
     },
 ];
 
-// Dữ liệu mẫu cho bài viết (Dựa trên ảnh 2)
 export const articles = [
     {
         id: 1,
@@ -42,7 +48,6 @@ export const articles = [
     },
 ];
 
-// Dữ liệu mẫu cho danh mục (Entries - Dựa trên cột "Entries" ở ảnh 2)
 export const entries = [
     {
         id: 1,
