@@ -6,6 +6,7 @@
     <title>User Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../CSS/menu.css">
+    <link rel="stylesheet" href="../CSS/admin_topbar.css">
     <link rel="stylesheet" href="../CSS/user_manager.css">
     <link rel="stylesheet" href="../CSS/admin_pagination.css">
     <link rel="stylesheet" href="../CSS/responsive.css">
@@ -14,19 +15,33 @@
     <div class="admin-page" id="userManagerPage">
         <header class="admin-topbar">
             <div class="admin-topbar__right">
-                <button class="admin-topbar__icon-btn" id="notificationButton" type="button">
+                <button class="admin-topbar__icon-btn" id="notificationButton" type="button" aria-label="Tin nhắn">
                     <i class="fa-regular fa-envelope"></i>
+                    <span class="admin-topbar__badge" aria-hidden="true">2</span>
                 </button>
-                <button class="admin-topbar__icon-btn" id="alertButton" type="button">
+                <button class="admin-topbar__icon-btn" id="alertButton" type="button" aria-label="Thông báo">
                     <i class="fa-regular fa-bell"></i>
                 </button>
-                <img class="admin-topbar__avatar" src="https://i.pravatar.cc/36?img=12" alt="Admin avatar">
+                <div class="user-profile" id="adminUserProfile">
+                    <img src="https://i.pravatar.cc/44?img=12" alt="User Avatar">
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="user-info">
+                                <strong>Rikkei</strong><br>
+                                <small>rikkei@gmail.com</small>
+                            </div>
+                            <a href="#">View profile</a>
+                            <a href="#">Update profile picture</a>
+                            <a href="#">Change password</a>
+                            <a href="#" class="logout">Log out</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
         <div class="admin-layout">
             <aside class="admin-menu" id="adminMenu">
-                <div class="admin-menu__brand">admin_customer</div>
                 <nav class="admin-menu__nav">
                     <a class="admin-menu__item admin-menu__item--active" id="menuUsersLink" href="./user_manager.html">
                         <span class="admin-menu__icon"><i class="fa-solid fa-users"></i></span>

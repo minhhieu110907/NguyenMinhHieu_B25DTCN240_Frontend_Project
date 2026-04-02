@@ -473,9 +473,10 @@
         padding: 0 12px;
     }
 
-    .entries-topbar-search,
+    .entries-panel-search,
     .user-manager__search {
         width: 100%;
+        max-width: none;
     }
 
     .user-manager__header {

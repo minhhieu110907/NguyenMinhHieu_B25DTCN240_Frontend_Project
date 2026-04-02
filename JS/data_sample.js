@@ -4,7 +4,7 @@ export const users = [
         firstname: "Lê",
         lastname: "Minh Thu",
         email: "minhthu@gmail.com",
-        password: "123456",
+        password: "Minhthu1111@",
         role: "user"
     },
     {
@@ -12,7 +12,7 @@ export const users = [
         firstname: "Vũ",
         lastname: "Hồng Vân",
         email: "hongvan@yahoo.com",
-        password: "abc123",
+        password: "Hongvan1110@",
         role: "user"
     },
     {
@@ -20,7 +20,7 @@ export const users = [
         firstname: "Nguyễn",
         lastname: "Minh Hiếu",
         email: "minhhieu19692016@gmail.com",
-        password: "152duongkenh",
+        password: "Minhhieu1109@",
         role: "admin"
     },
 ];

@@ -1,0 +1,118 @@
+/* Topbar dùng chung: icon thư/chuông ×1.1, avatar + dropdown */
+
+.admin-topbar {
+    min-height: 64px;
+    border-bottom: 1px solid #eaecf3;
+    background: #f8f9fc;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24px;
+    overflow: visible;
+}
+
+.admin-topbar__right {
+    display: flex;
+    align-items: center;
+    gap: calc(12px * 1.1);
+}
+
+/* Icon gốc ~14px → ×1.1 */
+.admin-topbar__icon-btn {
+    border: none;
+    background: transparent;
+    color: #6b7280;
+    font-size: calc(14px * 1.1);
+    cursor: pointer;
+    line-height: 1;
+    padding: calc(4px * 1.1);
+    position: relative;
+}
+
+.admin-topbar__badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: calc(14px * 1.1);
+    height: calc(14px * 1.1);
+    padding: 0 4px;
+    border-radius: 999px;
+    background: #2563eb;
+    color: #fff;
+    font-size: calc(9px * 1.1);
+    line-height: calc(14px * 1.1);
+    text-align: center;
+    font-weight: 600;
+    transform: translate(25%, -25%);
+}
+
+/* Avatar + dropdown (theo snippet của bạn, scope trong topbar) */
+.admin-topbar .user-profile {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Ảnh gốc 40px trong snippet → ×1.1 */
+.admin-topbar .user-profile img {
+    width: calc(40px * 1.1);
+    height: calc(40px * 1.1);
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    display: block;
+    object-fit: cover;
+}
+
+.admin-topbar .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(42px * 1.1);
+    background: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    width: 220px;
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+.admin-topbar .dropdown-content::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+}
+
+.admin-topbar .user-profile:hover .dropdown-content {
+    display: block;
+}
+
+.admin-topbar .dropdown-content .user-info {
+    padding: 0 20px 12px;
+    border-bottom: 1px solid #f3f4f6;
+    margin-bottom: 8px;
+}
+
+.admin-topbar .dropdown-content .user-info small {
+    color: #888;
+}
+
+.admin-topbar .dropdown-content a {
+    display: block;
+    padding: 10px 20px;
+    color: #374151;
+    text-decoration: none;
+    transition: all 0s ease;
+}
+
+.admin-topbar .dropdown-content a:hover {
+    background: #f1f1f1;
+}
+
+.admin-topbar .dropdown-content a.logout {
+    color: #ef4444 !important;
+    border-top: 1px solid #f3f4f6;
+    margin-top: 8px;
+}

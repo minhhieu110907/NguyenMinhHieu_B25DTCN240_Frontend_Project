@@ -1,18 +1,3 @@
-// menu admin
-async function loadMenu(activeId) {
-    try {
-        const response = await fetch('menu.html');
-        const data = await response.text();
-        document.getElementById('sidebar-container').innerHTML = data;
-        
-        // Active item hiện tại
-        const activeItem = document.getElementById(activeId);
-        if (activeItem) activeItem.classList.add('active');
-    } catch (error) {
-        console.error('Lỗi khi tải menu:', error);
-    }
-}
-
 // KEY
 const USER_KEY = "users";
 const CURRENT_USER_KEY = "currentUser";
@@ -22,11 +7,7 @@ const COMMENT_KEY = "comments";
 
 // GET DATA
 export function getData(key) {
-   let data = localStorage.getItem(key) ;
-   if ( data == null) {
-    return [];
-   }
-   return JSON.parse(data);
+    return JSON.parse(localStorage.getItem(key) || "[]");
 }
 
 // SAVE DATA

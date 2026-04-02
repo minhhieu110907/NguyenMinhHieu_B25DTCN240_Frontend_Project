@@ -9,36 +9,6 @@ body {
     min-height: 100vh;
 }
 
-.admin-topbar {
-    height: 64px;
-    border-bottom: 1px solid #eaecf3;
-    background: #f8f9fc;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 24px;
-}
-
-.admin-topbar__right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.admin-topbar__icon-btn {
-    border: none;
-    background: transparent;
-    color: #6b7280;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.admin-topbar__avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-}
-
 .admin-layout {
     display: flex;
 }
@@ -79,12 +49,13 @@ body {
 }
 
 .user-manager__search {
-    width: 320px;
+    width: 603px;
     max-width: 100%;
     border: 1px solid #eceef4;
     border-radius: 4px;
     background: #ffffff;
     position: relative;
+    margin-right: 300px;
 }
 
 .user-manager__search i {

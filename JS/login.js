@@ -1,20 +1,21 @@
 const form = document.querySelector("#loginForm");
-const loginBtn = document.querySelector("#loginBtn");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 
-import { users } from "./data_sample.js";
-import { setCurrentUser } from "./storage.js";
+import { getUser, setCurrentUser, checkLogin } from "./storage.js";
+
+
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
-  if (!email.value || !password.value) {
+  if (!email.value.trim() || !password.value.trim()) {
     alert("Email và mật khẩu không được để trống");
     return;
     // toast làm sau
   }
+  let users = getUser();
   let user = users.find(
-    (u) => u.password === password.value.trim() && u.email === email.value.trim(),
+    (u) => u.password === password.value.trim() && u.email === email.value.trim()
   );
   if (!user) {
     alert("Sai mật khẩu hoặc email");
@@ -22,13 +23,14 @@ form.addEventListener("submit", function (e) {
   }
 
   // LOGIN SUCCESS
+  setCurrentUser(user);
   localStorage.setItem("rememberEmail", email.value);
   localStorage.setItem("rememberPassword", password.value);
-  setCurrentUser(user);
 
   if (user.role === "user") {
     window.location.href = "../index.html";
-  } else if (user.role === "admin") {
+  }
+  else {
     window.location.href = "./user_manager.html";
   }
 });
@@ -36,11 +38,11 @@ form.addEventListener("submit", function (e) {
 // FILL AFTER LOGIN SUCCESS
 
 window.onload = function () {
-  let checkEmail = localStorage.getItem("rememberEmail");
-  let checkPassword = localStorage.getItem("rememberPassword");
+  let savedEmail = localStorage.getItem("rememberEmail");
+  let savedPassword = localStorage.getItem("rememberPassword");
 
-  if (checkEmail && checkPassword) {
-    email.value = checkEmail;
-    password.value = checkPassword;
+  if (savedEmail && savedPassword) {
+    email.value = savedEmail;
+    password.value = savedPassword;
   }
 };

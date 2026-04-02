@@ -4,35 +4,6 @@ body {
     background: #f3f4f8;
 }
 
-.admin-topbar {
-    height: 64px;
-    border-bottom: 1px solid #eaecf3;
-    background: #f8f9fc;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 24px;
-}
-
-.admin-topbar__right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.admin-topbar__icon-btn {
-    border: none;
-    background: transparent;
-    color: #6b7280;
-    font-size: 14px;
-}
-
-.admin-topbar__avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 999px;
-}
-
 .admin-layout {
     display: flex;
 }
@@ -57,7 +28,7 @@ body {
     display: inline-block;
     text-decoration: none;
     color: #fff;
-    background: #6a4dd8;
+    background: rgb(101,85,143);
     border-radius: 999px;
     font-size: 12px;
     padding: 10px 20px;
