@@ -74,13 +74,13 @@ body {
 }
 
 .article-status--public {
-    color: #039855;
-    background: #d1fadf;
+    color: #065F46;
+    background: #D1FAE5;
 }
 
 .article-status--private {
-    color: #b42318;
-    background: #fee4e2;
+    color: #991B1B;
+    background: #FEE2E2;
 }
 
 .article-status-select {
@@ -88,6 +88,7 @@ body {
     border-radius: 4px;
     font-size: 11px;
     padding: 5px 8px;
+    background: #EFEFEF;
 }
 
 .article-action {
@@ -100,9 +101,9 @@ body {
 }
 
 .article-action--edit {
-    background: #22c55e;
+    background: #44EF55;
 }
 
 .article-action--delete {
-    background: #ef4444;
+    background: #EF4444;
 }

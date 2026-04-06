@@ -1,29 +1,46 @@
-import { users as sampleUsers } from "./data_sample.js";
-import { getUser, saveUser } from "./storage.js";
+import {
+  users as sampleUsers,
+  articles as samplePosts,
+  entries as sampleTopics,
+} from "./data_sample.js";
 
-function initData() {
-    let localUsers = getUser();
+import {
+  getUser, saveUser,
+  getPost, savePost,
+  getCategories, saveCategories,
+} from "./storage.js";
 
-    // nếu chưa có user nào → dùng data mẫu
-    if (localUsers.length === 0) {
-        saveUser(sampleUsers);
-        return;
+export function initData() {
+  // USER ( Check by Email) 
+  let localUsers = getUser();
+  sampleUsers.forEach((sample) => {
+    const isExist = localUsers.find(u => u.email === sample.email);
+    if (!isExist) {
+      localUsers.push(sample);
     }
+  });
+  saveUser(localUsers);
 
-    //  merge: thêm user mẫu nếu chưa tồn tại
-    let mergedUsers = [...localUsers];
+  // POSTS (Check by ID or Title)
+  let localPost = getPost();
+  samplePosts.forEach((sample) => {
+    const isExist = localPost.find(p => p.id === sample.id || p.title === sample.title);
+    if (!isExist) {
+      localPost.push(sample);
+    }
+  });
+  savePost(localPost);
 
-    sampleUsers.forEach(function (sampleUser) {
-        let exist = mergedUsers.find(function (u) {
-            return u.email === sampleUser.email;
-        });
-
-        if (!exist) {
-            mergedUsers.push(sampleUser);
-        }
-    });
-
-    saveUser(mergedUsers);
+  // TOPICS (Check by Name)
+  let localTopics = getCategories();
+  sampleTopics.forEach((sample) => {
+    const isExist = localTopics.find(t => t.categoryName === sample.categoryName);
+    if (!isExist) {
+      localTopics.push(sample);
+    }
+  });
+  saveCategories(localTopics);
 }
 
+// INIT
 initData();

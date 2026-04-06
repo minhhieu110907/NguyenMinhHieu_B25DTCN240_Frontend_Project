@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../CSS/form_post.css">
     <link rel="stylesheet" href="../CSS/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/ui-manager.css">
 </head>
 
 <body>
@@ -32,11 +33,11 @@
             <!-- Article Categories -->
             <div class="form-group">
                 <label>Article Categories:</label>
-                <select name="" id="">
-                    <option value="">-- Select your catergories --</option>
-                    <option value="">Daily Journal</option>
-                    <option value="">Work & Career</option>
-                    <option value="">Personal Thoughts</option>
+                <select name="" id="categorySelect">
+                    <option value="">-- Select your categories --</option>
+                    <option value="Daily Journal">Daily Journal</option>
+                    <option value="Work & Career">Work & Career</option>
+                    <option value="Personal Thoughts">Personal Thoughts</option>
                 </select>
             </div>
 
@@ -67,6 +68,7 @@
                     <option value="surprised">😲 Surprised</option>
                     <option value="proud">😌 Proud</option>
                     <option value="anxious">😰 Anxious</option>
+                    <option value="stressed">😣 Stressed</option>
                     <option value="peaceful">🕊️ Peaceful</option>
                     <option value="curious">🧐 Curious</option>
                     <option value="shy">🙈 Shy</option>
@@ -115,7 +117,7 @@
     </div>
 
 
-    <script src="../JS/form_post.js"></script>
+    <script type="module" src="../JS/form_post.js"></script>
 </body>
 
 </html>

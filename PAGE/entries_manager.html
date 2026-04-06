@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../CSS/menu.css">
     <link rel="stylesheet" href="../CSS/admin_topbar.css">
+    <link rel="stylesheet" href="../CSS/ui-manager.css">
     <link rel="stylesheet" href="../CSS/entries_manager.css">
     <link rel="stylesheet" href="../CSS/admin_pagination.css">
     <link rel="stylesheet" href="../CSS/responsive.css">
@@ -23,17 +24,17 @@
                     <i class="fa-regular fa-bell"></i>
                 </button>
                 <div class="user-profile" id="adminUserProfile">
-                    <img src="https://i.pravatar.cc/44?img=12" alt="User Avatar">
+                    <img src="https://i.pravatar.cc/44?img=2" alt="User Avatar">
                     <div class="dropdown">
                         <div class="dropdown-content">
                             <div class="user-info">
-                                <strong>Rikkei</strong><br>
-                                <small>rikkei@gmail.com</small>
+                                <strong>Nguyễn</strong><br>
+                                <small>minhhieu19692016@gmail.com</small>
                             </div>
-                            <a href="#">View profile</a>
-                            <a href="#">Update profile picture</a>
-                            <a href="#">Change password</a>
-                            <a href="#" class="logout">Log out</a>
+                            <a href="#" data-menu-action="view-profile">View profile</a>
+                            <a href="#" data-menu-action="update-avatar">Update profile picture</a>
+                            <a href="#" data-menu-action="change-password">Change password</a>
+                            <a href="#" data-menu-action="logout" class="logout">Log out</a>
                         </div>
                     </div>
                 </div>
@@ -102,5 +103,7 @@
             </main>
         </div>
     </div>
+
+    <script type="module" src="../JS/entries_manager.js"></script>
 </body>
 </html>

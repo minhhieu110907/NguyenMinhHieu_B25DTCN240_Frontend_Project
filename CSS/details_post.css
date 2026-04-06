@@ -110,7 +110,7 @@ body {
 
 .comment-content p {
     margin-bottom: 10px;
-    color: #666;
+    color: #2e2e2e;
 }
 
 .comment-actions {
@@ -124,4 +124,18 @@ body {
     cursor: pointer;
     margin-top: 13px;
    
+}
+
+.btn-delete, .btn-like, .btn-cmt {
+    color: #65676b; 
+}
+
+.btn-delete {
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.btn-delete:hover {
+    color: #f02849; 
 }

@@ -7,11 +7,11 @@
     <title>RIKKEI_EDU_BLOG</title>
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/reponsive.css">
+    <link rel="stylesheet" href="../CSS/ui-manager.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="logo">
             <img src="../ASSET/icon/logo_header.png" alt="Logo" class="logo-img">
@@ -19,206 +19,76 @@
         </div>
 
         <div class="search-container">
-            <input type="text" placeholder="Search for articles">
+            <input type="text" id="searchInput" placeholder="Search for articles">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
         </div>
 
         <div class="header-right">
-            <a href="../PAGE/register.html"><button id="btnSignUp" class="btn-outline">Sign Up</button></a>
-            <a href="../PAGE/login.html"><button id="btnSignIn" class="btn-outline">Sign In</button></a>
-        </div>
+            <div id="headerAuthButtons">
+                <a href="../PAGE/register.html"><button id="btnSignUp" class="btn-outline">Sign Up</button></a>
+                <a href="../PAGE/login.html"><button id="btnSignIn" class="btn-outline">Sign In</button></a>
+            </div>
 
+            <div id="headerUserDropdown" class="user-profile" style="display: none;">
+                <img id="headerUserAvatar" src="" alt="User Avatar">
+                <div class="dropdown">
+                    <div class="dropdown-content">
+                        <div class="user-info">
+                            <strong id="headerUserName">User</strong><br>
+                            <small id="headerUserEmail">user@gmail.com</small>
+                        </div>
+                        <a href="#" data-menu-action="view-profile">View profile</a>
+                        <a href="#" data-menu-action="update-avatar">Update profile picture</a>
+                        <a href="#" data-menu-action="change-password">Change password</a>
+                        <a href="#" data-menu-action="logout" class="logout">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <div class="main-content">
-        <!-- Recent Blog Posts -->
         <section class="section recent-section">
             <h2 class="section-title">Recent blog posts</h2>
-            <div class="recent-grid">
-
-                <!-- Large Post -->
-                <div class="recent-large">
-                    <div class="post-card large">
-                        <img src="../assets/images/Image.png" alt="">
-                        <div class="post-info">
-                            <span class="date">Date: 2025-02-25</span>
-                            <h3>A Productive Day at Work</h3>
-                            <p>Today was a really productive day at work. I managed to finish a report ahead of schedule
-                                and received positive feedback from my manager.</p>
-                            <span class="category">Daily Journal</span>
-                        </div>
-                    </div>
+            <div class="recent-grid" id="recentPostsContainer">
                 </div>
-
-                <!-- Two Small Posts -->
-                <div class="recent-small">
-                    <div class="post-card small">
-                        <img src="../assets/images/Image (1).png" alt="">
-                        <div class="post-info">
-                            <span class="date">Date: 2025-02-24</span>
-                            <h3>My First Job Interview Experience</h3>
-                            <p>I had my first job interview today. I was nervous at first, but as the conversation went
-                                on, I felt more confident.</p>
-                            <span class="category">Work & Career</span>
-                        </div>
-                    </div>
-
-                    <div class="post-card small">
-                        <img src="https://picsum.photos/id/102/400/250" alt="">
-                        <div class="post-info">
-                            <span class="date">Date: 2025-02-23</span>
-                            <h3>Overthinking Everything</h3>
-                            <p>Lately, I have been overthinking everything, from small decisions to bigger life choices.
-                                I know I should trust myself.</p>
-                            <span class="category">Personal Thoughts</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
-        <!-- All Blog Posts -->
         <section class="section">
             <div class="section-header">
                 <h2>All blog posts</h2>
-                <div class="categories">
-                    <a href="../PAGE/allmypost.html" class="active">All my posts</a>
-                    <a href="#">Daily Journal</a>
-                    <a href="#">Work & Career</a>
-                    <a href="#">Personal Thoughts</a>
-                    <a href="#">Emotions & Feelings</a>
+                <div class="categories" id="categoryContainer">
+                    <a href="./PAGE/allmypost.html" class="active" data-category="All">All my posts</a>
+                    <a href="#" data-category="Daily Journal">Daily Journal</a>
+                    <a href="#" data-category="Work & Career">Work & Career</a>
+                    <a href="#" data-category="Personal Thoughts">Personal Thoughts</a>
+                    <a href="#" data-category="Emotions & Feelings">Emotions & Feelings</a>
                 </div>
             </div>
 
-            <div class="posts-grid">
-                <div class="post-card">
-                    <img src="https://picsum.photos/id/1015/400/250" alt="">
-                    <div class="post-info">
-                        <span class="date">Date: 2025-03-05</span>
-                        <h3>A Productive Day at Work</h3>
-                        <span class="category">Daily Journal</span>
-                    </div>
+            <div class="posts-grid" id="allPostsContainer">
                 </div>
-                <div class="post-card">
-                    <img src="https://picsum.photos/id/201/400/250" alt="">
-                    <div class="post-info">
-                        <span class="date">Date: 2025-03-04</span>
-                        <h3>My First Job Interview Experience</h3>
-                        <span class="category">Work & Career</span>
-                    </div>
-                </div>
-                <div class="post-card">
-                    <img src="https://picsum.photos/id/237/400/250" alt="">
-                    <div class="post-info">
-                        <span class="date">Date: 2025-03-03</span>
-                        <h3>Overthinking Everything</h3>
-                        <span class="category">Personal Thoughts</span>
-                    </div>
-                </div>
-                <div class="post-card">
-                    <img src="https://picsum.photos/id/180/400/250" alt="">
-                    <div class="post-info">
-                        <span class="date">Date: 2025-03-14</span>
-                        <h3>How collaboration makes us better designers</h3>
-                        <span class="category">Work & Career</span>
-                    </div>
-                </div>
-                <div class="post-card">
-                    <img src="https://picsum.photos/id/251/400/250" alt="">
-                    <div class="post-info">
-                        <span class="date">Date: 2025-03-10</span>
-                        <h3>Our top 10 Javascript frameworks to use</h3>
-                        <span class="category">Work & Career</span>
-                    </div>
-                </div>
-                <div class="post-card">
-                    <img src="https://picsum.photos/id/133/400/250" alt="">
-                    <div class="post-info">
-                        <span class="date">Date: 2025-03-08</span>
-                        <h3>Podcast: Creating a better UX Community</h3>
-                        <span class="category">Emotions & Feelings</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Pagination -->
             <div class="pagination">
                 <a href="#" class="prev">← Previous</a>
                 <div class="page-numbers">
                     <span class="active">1</span>
                     <span>2</span>
                     <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
-                    <span>6</span>
-                    <span>7</span>
-                    <span>8</span>
-                    <span>9</span>
-                    <span>10</span>
                 </div>
                 <a href="#" class="next">Next →</a>
             </div>
         </section>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <div class="footer-brand">
-                <h1>MY BLOG</h1>
-            </div>
-
+            <div class="footer-brand"><h1>MY BLOG</h1></div>
             <div class="footer-columns">
-                <div class="footer-col about-col">
-                    <p class="col-heading">About</p>
-                    <p class="col-subheading">Rareblocks</p>
-                    <p class="about-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan porta
-                        lectus ridiculus in mattis. Netus sodales in volutpat ullamcorper amet adipiscing fermentum.
-                    </p>
-                </div>
-
-                <div class="footer-col-company">
-                    <p class="col-heading">Company</p>
-                    <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Works</a></li>
-                        <li><a href="#">Career</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <p class="col-heading">Help</p>
-                    <ul>
-                        <li><a href="#">Customer Support</a></li>
-                        <li><a href="#">Delivery Details</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <p class="col-heading">Resources</p>
-                    <ul>
-                        <li><a href="#">Free eBooks</a></li>
-                        <li><a href="#">Development Tutorial</a></li>
-                        <li><a href="#">How to - Blog</a></li>
-                        <li><a href="#">Youtube Playlist</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-social">
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-github"></i></a>
+                 </div>
         </div>
     </footer>
 
-    <script src="../JS/index.js"></script>
+    <script type="module" src="../JS/index.js"></script>
 </body>
-
 </html>

@@ -105,9 +105,10 @@ body {
 }
 
 .user-cell__avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .user-cell__name {
@@ -144,4 +145,10 @@ body {
 
 .user-action--unblock {
     color: #3b82f6;
+}
+
+.user-action:disabled {
+  background-color: rgb(240,244,249);
+  cursor: not-allowed;
+  opacity: 0.6;
 }

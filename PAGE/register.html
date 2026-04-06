@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Rikkeisoft</title>
     <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="../CSS/ui-manager.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
 
     <img src="../ASSET/images/Hai cầu tím trên nền xanh.png" class="bg-image" alt="background">
@@ -16,10 +20,10 @@
             <p>RIKKEI EDUCATION</p>
         </div>
 
-        <form class="form-box">
+        <form class="form-box" style="position: relative;">
             <div class="name-row">
                 <div>
-                    <input type="text" id="first-name"> 
+                    <input type="text" id="first-name">
                     <label>First name</label>
                 </div>
                 <div>
@@ -33,14 +37,24 @@
                 <label>Email address</label>
             </div>
 
-            <div class="input-group">
-                <input type="password" id="password">
-                <label>Password</label>
+            <div class="input-group" style="position: relative;">
+                <input type="password" id="password" placeholder="Nhập mật khẩu"
+                    style="width: 100%; padding-right: 35px; height: 35px;">
+
+                <i class="toggleIcon fa-regular fa-eye"
+                        style=" position: absolute; right: 12px; top: 28%; transform: translateY(-50%); cursor:
+                    pointer;"></i>
+                <label for="password">Password</label>
             </div>
 
-            <div class="input-group">
-                <input type="password" id="rePassword">
-                <label>Confirm Password</label>
+            <div class="input-group" style="position: relative;">
+                <input type="password" id="rePassword" placeholder="Nhập lại mật khẩu"
+                    style="width: 100%; padding-right: 35px; height: 35px;">
+
+                <i class="toggleIcon fa-regular fa-eye"
+                        style=" position: absolute; right: 12px; top: 28%; transform: translateY(-50%); cursor:
+                    pointer;"></i>
+                <label for="password">Confirm password</label>
             </div>
 
             <button type="submit">Sign up</button>
@@ -50,7 +64,8 @@
             </p>
         </form>
     </div>
-    
+
     <script type="module" src="../JS/register.js"></script>
 </body>
+
 </html>

@@ -1,88 +1,124 @@
-// =======================
-// LẤY ELEMENT
-// =======================
-var titleInput = document.querySelector('input[type="text"]');
-var categoryInput = document.querySelectorAll('input[type="text"]')[1];
-var contentInput = document.querySelector("textarea");
-var moodSelect = document.getElementById("mood");
-var addBtn = document.querySelector(".add-btn");
+import { getPost, savePost, getCurrentUser } from "../JS/storage.js";
+import { showToast } from "./ui-manager.js";
+import { initAuthGuard } from "./auth_guard.js";
 
-// =======================
-// DEBUG: xem user chọn mood
-// =======================
-moodSelect.addEventListener("change", function () {
-    var value = moodSelect.value;
-    var text = moodSelect.options[moodSelect.selectedIndex].text;
+const titleInput = document.querySelector('.form-group input[type="text"]');
+const categorySelect = document.querySelector('.form-group select'); 
+const moodSelect = document.getElementById("mood");
+const contentTextarea = document.querySelector('.form-group textarea');
+const statusRadios = document.querySelectorAll('input[name="status"]');
+const addBtn = document.querySelector(".add-btn");
+const closeBtn = document.querySelector(".close-btn");
+const headerTitle = document.querySelector(".header h1");
 
-    console.log("Mood value:", value);
-    console.log("Mood text:", text);
+// DATA & STATE 
+let posts = getPost();
+const currentUser = getCurrentUser();
+const editingId = localStorage.getItem("editingPostId");
+
+// HÀM ĐIỀU HƯỚNG QUAY LẠI 
+function goBack() {
+    localStorage.removeItem("editingPostId"); 
+    if (currentUser && currentUser.role === "admin") {
+        window.location.href = "./article_manager.html"; 
+    } else {
+        window.location.href = "./allmypost.html"; 
+    }
+}
+
+// KHI TRANG LOAD (CHẾ ĐỘ EDIT) 
+document.addEventListener("DOMContentLoaded", () => {
+    if (editingId) {
+        const article = posts.find(p => p.id === Number(editingId));
+        if (article) {
+            headerTitle.textContent = "📝 Edit Article";
+            addBtn.textContent = "Update";
+
+            // Điền dữ liệu
+            titleInput.value = article.title || "";
+            categorySelect.value = article.entries || "";
+            moodSelect.value = article.mood || ""; // Chạy mượt vì value đã khớp
+            contentTextarea.value = article.content || "";
+
+            // Chọn đúng trạng thái Public/Private
+            statusRadios.forEach(radio => {
+                const labelText = radio.nextElementSibling.textContent.trim().toLowerCase();
+                if (labelText === (article.status || "public").toLowerCase()) {
+                    radio.checked = true;
+                }
+            });
+        }
+    }
 });
 
-// =======================
-// XỬ LÝ KHI BẤM ADD
-// =======================
+// SỰ KIỆN NÚT CLOSE 
+closeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    goBack();
+});
+
+// SỰ KIỆN NÚT ADD / UPDATE 
 addBtn.addEventListener("click", function () {
+    const title = titleInput.value.trim();
+    const category = categorySelect.value;
+    const content = contentTextarea.value.trim();
+    const moodValue = moodSelect.value;
+    const moodText = moodSelect.options[moodSelect.selectedIndex].text;
+    
+    let status = "public";
+    statusRadios.forEach(r => { 
+        if (r.checked) status = r.nextElementSibling.textContent.trim().toLowerCase(); 
+    });
 
-    // Lấy dữ liệu
-    var title = titleInput.value.trim();
-    var category = categoryInput.value.trim();
-    var content = contentInput.value.trim();
-    var moodValue = moodSelect.value;
-    var moodText = moodSelect.options[moodSelect.selectedIndex].text;
-
-    // =======================
-    // VALIDATE
-    // =======================
-    if (title === "" || content === "") {
-        alert("Vui lòng nhập Title và Content!");
+    // VALIDATION )
+    if (!title || !content || !moodValue) {
+        showToast("Vui lòng nhập đủ thông tin và chọn Mood!", "error");
         return;
     }
 
-    if (moodValue === "") {
-        alert("Vui lòng chọn Mood!");
-        return;
+    if (editingId) {
+        // CHẾ ĐỘ CẬP NHẬT 
+        const index = posts.findIndex(p => p.id === Number(editingId));
+        if (index !== -1) {
+            posts[index] = {
+                ...posts[index], 
+                title: title,
+                entries: category,
+                content: content,
+                mood: moodValue,
+                moodDisplay: moodText,
+                status: status,
+                updatedAt: new Date().toLocaleDateString()
+            };
+            showToast("Đã cập nhật bài viết thành công!", "success");
+        }
+    } else {
+        // CHẾ ĐỘ THÊM MỚI 
+        const newId = posts.length > 0 ? Math.max(...posts.map(p => p.id)) + 1 : 1;
+        posts.push({
+            id: newId,
+            author: currentUser ? currentUser.lastname : "User",
+            title: title,
+            entries: category,
+            content: content,
+            mood: moodValue,
+            moodDisplay: moodText,
+            status: status,
+            createdAt: new Date().toLocaleDateString(),
+            image: generateAvatar(newId) 
+        });
+        showToast("Đã đăng bài viết mới thành công!", "success");
     }
 
-    // =======================
-    // TẠO OBJECT POST
-    // =======================
-    var post = {
-        id: Date.now(),
-        title: title,
-        category: category,
-        content: content,
-        mood: moodValue,        // dùng cho logic
-        moodDisplay: moodText,  // dùng để hiển thị
-        createdAt: new Date().toLocaleDateString()
-    };
-
-    // =======================
-    // LẤY DATA CŨ
-    // =======================
-    var posts = JSON.parse(localStorage.getItem("posts")) || [];
-
-    // =======================
-    // THÊM BÀI MỚI
-    // =======================
-    posts.push(post);
-
-    // =======================
-    // LƯU LẠI
-    // =======================
-    localStorage.setItem("posts", JSON.stringify(posts));
-
-    console.log("Post saved:", post);
-
-    // =======================
-    // RESET FORM
-    // =======================
-    titleInput.value = "";
-    categoryInput.value = "";
-    contentInput.value = "";
-    moodSelect.value = "";
-
-    alert("Đăng bài thành công! 🎉");
-
-    // (optional) chuyển trang
-    // window.location.href = "after_login.html";
+    
+    savePost(posts);
+    setTimeout(goBack, 1000); 
 });
+
+// Creat avatar
+function generateAvatar(id) {
+  const imgId = (id % 70) + 1
+  return `https://i.pravatar.cc/150?img=${imgId}`;
+}
+
+initAuthGuard();

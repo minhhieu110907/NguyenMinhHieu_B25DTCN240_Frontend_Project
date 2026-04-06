@@ -7,6 +7,7 @@
     <title>Login UI</title>
 
     <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/ui-manager.css">
     <link rel="stylesheet" href="../CSS/responsive.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -40,8 +41,12 @@
                     <label for="email">Email address</label>
                 </div>
 
-                <div class="form-group" id="passwordGroup">
-                    <input type="password" id="password" placeholder="Enter password">
+                <div class="form-group" id="passwordGroup" style="position: relative;">
+                    <input type="password" id="password" placeholder="Nhập mật khẩu"
+                        style="width: 100%; padding-right: 35px; height: 35px;">
+
+                    <i id="toggleIcon" class="fa-regular fa-eye""
+                        style=" position: absolute; right: 12px; top: 28%; transform: translateY(-50%); cursor: pointer;"></i>
                     <label for="password">Password</label>
                 </div>
 
