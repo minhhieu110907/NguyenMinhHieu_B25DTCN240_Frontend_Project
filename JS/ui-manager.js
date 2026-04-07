@@ -6,7 +6,6 @@ function ensureToastContainer() {
 
   container = document.createElement("div");
   container.id = "uiToastContainer";
-  container.setAttribute("aria-live", "polite");
   document.body.appendChild(container);
   return container;
 }
@@ -48,15 +47,14 @@ export function showToast(message, type = "success") {
 
   toastTimer = window.setTimeout(() => {
     toast.classList.remove("ui-toast--show");
-    window.setTimeout(() => removeNodeSafe(toast), 180);
+    window.setTimeout(() => removeNodeSafe(toast), 200);
     toastTimer = null;
-  }, 2800);
+  }, 3000);
 }
 
 export function showConfirmModal(title, message, callback) {
   const overlay = document.createElement("div");
   overlay.className = "ui-modal-overlay";
-  overlay.setAttribute("role", "presentation");
 
   overlay.innerHTML = `
     <div class="ui-confirm-modal" role="dialog" aria-modal="true" aria-label="${title}">
