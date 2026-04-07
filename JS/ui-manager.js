@@ -23,7 +23,7 @@ function removeNodeSafe(node) {
 export function showToast(message, type = "success") {
   const container = ensureToastContainer();
 
-  // Chỉ allow hiển thị 1 toast tại 1 thời điểm (desktop-first, ít gây rối)
+  // Chỉ allow hiển thị 1 toast tại 1 thời điểm
   if (toastTimer) {
     clearTimeout(toastTimer);
     toastTimer = null;

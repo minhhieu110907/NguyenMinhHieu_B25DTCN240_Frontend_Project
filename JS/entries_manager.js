@@ -9,7 +9,7 @@ const preBtn = document.querySelector("#entriesPaginationPrevious");
 const nextBtn = document.querySelector("#entriesPaginationNext");
 
 import "./init_data.js";
-import { getCategories, saveCategories, getPost } from "./storage.js";
+import { getCategories, saveCategories, getPost, savePost } from "./storage.js"; // Thêm savePost để đồng bộ
 import { showConfirmModal, showToast } from "./ui-manager.js";
 import { bindAdminSidebarLogout, initMenuDropdownActions } from "./menu-dropdown_action.js";
 import { initAuthGuard } from "./auth_guard.js";
@@ -17,6 +17,7 @@ import { initAuthGuard } from "./auth_guard.js";
 // DATA
 let categories = getCategories();
 let editingId = null;
+let oldCategoryName = ""; // Biến để ghi nhớ tên cũ trước khi sửa
 let currentId = categories.length > 0 ? Math.max(...categories.map((c) => c.id)) + 1 : 1;
 
 // PAGINATION STATE
@@ -27,14 +28,16 @@ let pageSize = 5;
 // RENDER
 function renderCategories(list = [...categories]) {
   if (list.length === 0) {
-    categoryList.innerHTML = `Không có dữ liệu`;
+    categoryList.innerHTML = `<tr><td colspan="3" style="text-align:center;">Không có dữ liệu</td></tr>`;
     return;
   }
   let html = "";
   list.forEach((category, index) => {
+    // Tính toán số thứ tự đúng theo trang
+    const displayIndex = (currentPage - 1) * pageSize + index + 1;
     html += `
       <tr>
-        <td>${index + 1}</td>
+        <td>${displayIndex}</td>
         <td>${category.categoryName}</td>
         <td>
           <button class="entries-action entries-action--edit" type="button" data-id="${category.id}">Edit</button>
@@ -92,7 +95,7 @@ function paginationRender(totalPage, list) {
 
   // DISABLE PRE / NEXT
   preBtn.disabled = currentPage === 1;
-  nextBtn.disabled = currentPage === totalPage;
+  nextBtn.disabled = (currentPage === totalPage || totalPage === 0);
 
   // PAGE BUTTON CLICK
   document.querySelectorAll(".admin-pagination__number").forEach((btn) => {
@@ -128,19 +131,49 @@ addBtn.addEventListener("click", function () {
     return;
   }
 
-  let categoryData = { categoryName: val };
-
   if (editingId) {
-    // UPDATE
+    // CHẾ ĐỘ UPDATE
+    const newName = val;
     let category = categories.find((c) => c.id === editingId);
-    Object.assign(category, categoryData);
-    showToast("Cập nhật thành công", "success");
+    if (oldCategoryName !== newName) {
+      let posts = getPost();
+      let syncCount = 0;
+
+      const updatedPosts = posts.map(post => {
+        if (post.entries === oldCategoryName) {
+          syncCount++;
+          return { ...post, entries: newName };
+        }
+        return post;
+      });
+
+      if (syncCount > 0) {
+        savePost(updatedPosts);
+      }
+      showToast(`Cập nhật thành công và đồng bộ ${syncCount} bài viết`, "success");
+    } else {
+      showToast("Cập nhật thành công", "success");
+    }
+
+    category.categoryName = newName;
     saveCategories(categories);
+    
+    // Reset trạng thái
     editingId = null;
+    oldCategoryName = "";
     addBtn.textContent = "Add Category";
   } else {
-    // ADD
-    categoryData.id = currentId++;
+    // --- CHẾ ĐỘ ADD ---
+    // Kiểm tra trùng tên để dữ liệu sạch hơn
+    if (categories.some(c => c.categoryName.toLowerCase() === val.toLowerCase())) {
+        showToast("Thể loại này đã tồn tại!", "error");
+        return;
+    }
+
+    const categoryData = { 
+        id: currentId++, 
+        categoryName: val 
+    };
     categories.push(categoryData);
     showToast("Thêm thành công thể loại bài viết!", "success");
     saveCategories(categories);
@@ -156,6 +189,7 @@ categoryList.addEventListener("click", function (e) {
   const id = +e.target.dataset.id;
   if (!id) return;
 
+  // XỬ LÝ XOÁ (
   if (e.target.classList.contains("entries-action--delete")) {
     let index = categories.findIndex((c) => c.id === id);
     if (index === -1) {
@@ -165,14 +199,14 @@ categoryList.addEventListener("click", function (e) {
 
     let posts = getPost();
     let categoryNameTarget = categories[index].categoryName;
-    let isDelete = posts.some((post) => post.entries === categoryNameTarget);
+    let hasPosts = posts.some((post) => post.entries === categoryNameTarget);
 
     showConfirmModal(
       "Xác nhận xoá thể loại",
       `Bạn có chắc chắn muốn xoá thể loại ${categoryNameTarget}?`,
       (ok) => {
         if (!ok) return;
-        if (!isDelete) {
+        if (!hasPosts) {
           categories.splice(index, 1);
           showToast("Đã xoá thành công", "success");
           saveCategories(categories);
@@ -184,11 +218,13 @@ categoryList.addEventListener("click", function (e) {
     );
   }
 
+  // XỬ LÝ SỬA
   if (e.target.classList.contains("entries-action--edit")) {
     let category = categories.find((c) => c.id === id);
     if (!category) return;
+    
     editingId = id;
-
+    oldCategoryName = category.categoryName; 
     // FILL INPUT
     nameInput.value = category.categoryName;
 
@@ -214,6 +250,7 @@ searchCategories.addEventListener("input", function () {
   }
 
   editingId = null;
+  oldCategoryName = "";
   addBtn.textContent = "Add Category";
   nameInput.value = "";
 

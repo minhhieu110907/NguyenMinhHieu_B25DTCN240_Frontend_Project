@@ -56,6 +56,25 @@ export function removeCurrentUser() {
   localStorage.removeItem(CURRENT_USER_KEY);
 }
 
+// Cập nhật tên category cho tất cả bài viết liên quan
+export const updatePostsCategory = (oldName, newName) => {
+    let posts = getPost();
+    posts = posts.map(post => {
+        if (post.entries === oldName) {
+            return { ...post, entries: newName };
+        }
+        return post;
+    });
+    savePost(posts);
+};
+
+// Xóa tất cả bài viết thuộc về một category
+export const deletePostsByCategory = (categoryName) => {
+    let posts = getPost();
+    const filteredPosts = posts.filter(post => post.entries !== categoryName);
+    savePost(filteredPosts);
+};
+
 export function checkLogin() {
   let user = getCurrentUser();
   if (!user) return false;

@@ -29,7 +29,6 @@ form.addEventListener("submit", function (e) {
   setCurrentUser(user);
   localStorage.setItem("rememberEmail", email.value);
   localStorage.setItem("rememberPassword", password.value);
-  showToast("Đăng nhập thành công", "success");
 
   if (user.role === "user") {
     window.location.href = "../index.html";

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../CSS/admin_pagination.css">
     <link rel="stylesheet" href="../CSS/responsive.css">
 </head>
+
 <body>
     <div class="admin-page" id="articleManagerPage">
         <header class="admin-topbar">
@@ -44,18 +46,35 @@
         <div class="admin-layout">
             <aside class="admin-menu" id="adminMenu">
                 <nav class="admin-menu__nav">
-                    <a class="admin-menu__item" id="menuUsersLink" href="./user_manager.html"><span class="admin-menu__icon"><i class="fa-solid fa-users"></i></span><span class="admin-menu__label">Manage Users</span></a>
-                    <a class="admin-menu__item" id="menuEntriesLink" href="./entries_manager.html"><span class="admin-menu__icon"><i class="fa-regular fa-rectangle-list"></i></span><span class="admin-menu__label">Manage Entries</span></a>
-                    <a class="admin-menu__item admin-menu__item--active" id="menuArticlesLink" href="./article_manager.html"><span class="admin-menu__icon"><i class="fa-regular fa-newspaper"></i></span><span class="admin-menu__label">Manage Article</span></a>
-                    <a class="admin-menu__item admin-menu__item--logout" id="menuLogoutLink" href="./login.html"><span class="admin-menu__icon"><i class="fa-solid fa-right-from-bracket"></i></span><span class="admin-menu__label">Log out</span></a>
+                    <a class="admin-menu__item" id="menuUsersLink" href="./user_manager.html"><span
+                            class="admin-menu__icon"><i class="fa-solid fa-users"></i></span><span
+                            class="admin-menu__label">Manage Users</span></a>
+                    <a class="admin-menu__item" id="menuEntriesLink" href="./entries_manager.html"><span
+                            class="admin-menu__icon"><i class="fa-regular fa-rectangle-list"></i></span><span
+                            class="admin-menu__label">Manage Entries</span></a>
+                    <a class="admin-menu__item admin-menu__item--active" id="menuArticlesLink"
+                        href="./article_manager.html"><span class="admin-menu__icon"><i
+                                class="fa-regular fa-newspaper"></i></span><span class="admin-menu__label">Manage
+                            Article</span></a>
+                    <a class="admin-menu__item admin-menu__item--logout" id="menuLogoutLink" href="./login.html"><span
+                            class="admin-menu__icon"><i class="fa-solid fa-right-from-bracket"></i></span><span
+                            class="admin-menu__label">Log out</span></a>
                 </nav>
             </aside>
 
             <main class="admin-main">
                 <section class="article-panel" id="articlePanel">
                     <div class="article-panel__head">
-                        <a class="article-panel__create-btn" id="createArticleButton" href="./form_post.html">Thêm mới bài viết</a>
+                        <a class="article-panel__create-btn" id="createArticleButton" href="./form_post.html">Thêm mới
+                            bài
+                            viết</a>
                         <h1 class="article-panel__title">Quản lý bài viết</h1>
+
+                        <div class="admin-search-box">
+                            <input type="text" id="adminSearchInput" placeholder="Tìm kiếm theo tiêu đề...">
+                            <i class="fa-solid fa-microphone voice-search-btn" id="adminVoiceSearchBtn"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
                     </div>
 
                     <div class="article-table-wrapper">
@@ -73,7 +92,9 @@
                             </thead>
                             <tbody id="articleTableBody">
                                 <tr>
-                                    <td><img class="article-image" src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=100&q=80" alt="Nấu ăn"></td>
+                                    <td><img class="article-image"
+                                            src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=100&q=80"
+                                            alt="Nấu ăn"></td>
                                     <td>Học nấu cà sốt cà chua</td>
                                     <td>Nấu ăn</td>
                                     <td>Mô tả học được cách nấu ăn...</td>
@@ -85,12 +106,16 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <button class="article-action article-action--edit" id="editArticleBtn1" type="button">Sửa</button>
-                                        <button class="article-action article-action--delete" id="deleteArticleBtn1" type="button">Xóa</button>
+                                        <button class="article-action article-action--edit" id="editArticleBtn1"
+                                            type="button">Sửa</button>
+                                        <button class="article-action article-action--delete" id="deleteArticleBtn1"
+                                            type="button">Xóa</button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><img class="article-image" src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=100&q=80" alt="IT"></td>
+                                    <td><img class="article-image"
+                                            src="https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=100&q=80"
+                                            alt="IT"></td>
                                     <td>Bí kíp viết CV ngành IT</td>
                                     <td>IT</td>
                                     <td>Chia sẻ cách viết CV ấn tượng...</td>
@@ -102,8 +127,10 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <button class="article-action article-action--edit" id="editArticleBtn2" type="button">Sửa</button>
-                                        <button class="article-action article-action--delete" id="deleteArticleBtn2" type="button">Xóa</button>
+                                        <button class="article-action article-action--edit" id="editArticleBtn2"
+                                            type="button">Sửa</button>
+                                        <button class="article-action article-action--delete" id="deleteArticleBtn2"
+                                            type="button">Xóa</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -111,15 +138,18 @@
                     </div>
 
                     <div class="admin-pagination" id="articlePagination">
-                        <button class="admin-pagination__button" id="articlePaginationPrevious" type="button"><i class="fa-solid fa-arrow-left"></i><span>Previous</span></button>
+                        <button class="admin-pagination__button" id="articlePaginationPrevious" type="button"><i
+                                class="fa-solid fa-arrow-left"></i><span>Previous</span></button>
                         <div class="admin-pagination__numbers">
-                            <button class="admin-pagination__number admin-pagination__number--active" id="articlePage1" type="button">1</button>
+                            <button class="admin-pagination__number admin-pagination__number--active" id="articlePage1"
+                                type="button">1</button>
                             <button class="admin-pagination__number" id="articlePage2" type="button">2</button>
                             <button class="admin-pagination__number" id="articlePage3" type="button">3</button>
                             <span class="admin-pagination__dots">...</span>
                             <button class="admin-pagination__number" id="articlePage10" type="button">10</button>
                         </div>
-                        <button class="admin-pagination__button" id="articlePaginationNext" type="button"><span>Next</span><i class="fa-solid fa-arrow-right"></i></button>
+                        <button class="admin-pagination__button" id="articlePaginationNext"
+                            type="button"><span>Next</span><i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </section>
             </main>
@@ -127,4 +157,5 @@
     </div>
     <script type="module" src="../JS/article_manager.js"></script>
 </body>
+
 </html>

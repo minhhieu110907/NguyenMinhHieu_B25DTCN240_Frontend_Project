@@ -29,107 +29,20 @@
     <h1 class="page-title"><a href="../PAGE/form_post.html">ADD NEW ARTICLE</a></h1>
     <!-- LIST -->
     <section class="article-list" id="articleList">
-
-        <!-- CARD -->
-        <div class="article-card">
-
-            <img src="" class="article-img">
-
-            <div class="article-content">
-
-                <p class="article-date">Date: 2025-02-25</p>
-
-                <div class="article-title-row">
-                    <h3 class="article-title">A Productive Day at Work</h3>
-                    <span class="external-icon">↗</span>
-                </div>
-
-                <p class="article-desc">
-                    Today was a really productive day at work. I managed to finish a report ahead of schedule and
-                    received positive feedback from my manager.
-                </p>
-
-                <div class="article-footer">
-                    <span class="category tag-purple">Daily Journal</span>
-                    <button class="edit-btn">Edit your post</button>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- CARD -->
-        <div class="article-card">
-
-            <img src="" class="article-img">
-
-            <div class="article-content">
-
-                <p class="article-date">Date: 2025-02-24</p>
-
-                <div class="article-title-row">
-                    <h3 class="article-title">My First Job Interview Experience</h3>
-                    <span class="external-icon">↗</span>
-                </div>
-
-                <p class="article-desc">
-                    I had my first job interview today! I was nervous at first, but as the conversation went on, I felt
-                    more confident.
-                </p>
-
-                <div class="article-footer">
-                    <span class="category tag-blue">Work & Career</span>
-                    <button class="edit-btn">Edit your post</button>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- CARD -->
-        <div class="article-card">
-
-            <img src="" class="article-img">
-
-            <div class="article-content">
-
-                <p class="article-date">Date: 2025-02-23</p>
-
-                <div class="article-title-row">
-                    <h3 class="article-title">Overthinking Everything</h3>
-                    <span class="external-icon">↗</span>
-                </div>
-
-                <p class="article-desc">
-                    Lately, I have been overthinking everything, from small decisions to bigger life choices. I know I
-                    should trust myself.
-                </p>
-
-                <div class="article-footer">
-                    <span class="category tag-green">Personal Thoughts</span>
-                    <button class="edit-btn">Edit your post</button>
-                </div>
-
-            </div>
-        </div>
-
     </section>
 
     <!-- PAGINATION -->
-    <div class="pagination">
-        <button class="page-btn"><i class="fa-solid fa-arrow-left"></i> Previous</button>
-
-        <div class="page-numbers">
-            <button class="page-number active">1</button>
-            <button class="page-number">2</button>
-            <button class="page-number">3</button>
-            <button class="page-number">4</button>
-            <button class="page-number">5</button>
-            <span class="dots">...</span>
-            <button class="page-number">10</button>
-            <button class="page-number">11</button>
+    <div class="admin-pagination" id="myPostsPagination">
+        <button class="admin-pagination__button" id="prevBtn" type="button">
+            <i class="fa-solid fa-arrow-left"></i><span>Previous</span>
+        </button>
+        <div class="admin-pagination__numbers" id="paginationNumbers">
         </div>
-
-        <button class="page-btn">Next <i class="fa-solid fa-arrow-right"></i></button>
+        <button class="admin-pagination__button" id="nextBtn" type="button">
+            <span>Next</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
     </div>
+
 
     <!-- FOOTER -->
     <div class="footer">
@@ -179,7 +92,7 @@
         <a href=""><i class="fa-brands fa-github"></i></a>
     </div>
 
-    <script src="../JS/allmypost.js"></script>
+    <script type="module" src="../JS/allmypost.js"></script>
 </body>
 
 </html>

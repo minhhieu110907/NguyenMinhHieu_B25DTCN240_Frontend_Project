@@ -4,43 +4,24 @@ import {
   entries as sampleTopics,
 } from "./data_sample.js";
 
-import {
-  getUser, saveUser,
-  getPost, savePost,
-  getCategories, saveCategories,
-} from "./storage.js";
+import { saveUser, savePost, saveCategories } from "./storage.js";
+
+// Khai báo tên khóa để đánh dấu trạng thái khởi tạo
+const INIT_FLAG = "APP_INITIALIZED";
 
 export function initData() {
-  // USER ( Check by Email) 
-  let localUsers = getUser();
-  sampleUsers.forEach((sample) => {
-    const isExist = localUsers.find(u => u.email === sample.email);
-    if (!isExist) {
-      localUsers.push(sample);
-    }
-  });
-  saveUser(localUsers);
+  const isInitialized = localStorage.getItem(INIT_FLAG);
+  // Nếu đã khởi tạo rồi thì thoát hàm ngay lập tức để giữ nguyên dữ liệu người dùng đã sửa xóa
+  if (isInitialized === "true") {
+    return;
+  }
 
-  // POSTS (Check by ID or Title)
-  let localPost = getPost();
-  samplePosts.forEach((sample) => {
-    const isExist = localPost.find(p => p.id === sample.id || p.title === sample.title);
-    if (!isExist) {
-      localPost.push(sample);
-    }
-  });
-  savePost(localPost);
+  saveUser(sampleUsers);
+  savePost(samplePosts);
+  saveCategories(sampleTopics);
 
-  // TOPICS (Check by Name)
-  let localTopics = getCategories();
-  sampleTopics.forEach((sample) => {
-    const isExist = localTopics.find(t => t.categoryName === sample.categoryName);
-    if (!isExist) {
-      localTopics.push(sample);
-    }
-  });
-  saveCategories(localTopics);
+  // Đặt trạng thái đã khởi tạo thành công 
+  localStorage.setItem(INIT_FLAG, "true");
 }
 
-// INIT
 initData();

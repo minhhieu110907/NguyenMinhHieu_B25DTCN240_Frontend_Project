@@ -34,6 +34,7 @@ export const users = [
 export const articles = [
   {
     id: 1,
+    authorId: 2,
     title: "Deadline đầu tiên của kỳ học",
     entries: "Personal Thoughts",
     content:
@@ -41,10 +42,11 @@ export const articles = [
     mood: "stressed",
     status: "private",
     image: "../ASSET/images/first_deadline.jpg",
-    date: "2025-02-23 15:30:05",
+    date: "23/2/2025 15:30:05",
   },
   {
     id: 2,
+    authorId: 2,
     title: "Cà phê chiều chủ nhật",
     entries: "Daily Journal",
     content:
@@ -52,17 +54,25 @@ export const articles = [
     mood: "relaxed",
     status: "public",
     image: "../ASSET/images/cafe.jpg",
-    date: "2025-03-15 14:30:00",
+    date: "15/3/2025 14:30:00",
   },
 ];
 
 export const entries = [
   {
     id: 1,
-    categoryName: "Nhật ký học tập",
+    categoryName: "Personal Thoughts",
   },
   {
     id: 2,
-    categoryName: "Nhật ký trải nghiệm - học qua đời sống",
+    categoryName: "Daily Journal",
+  },
+  {
+    id: 1,
+    categoryName: "Work & Career",
+  },
+  {
+    id: 1,
+    categoryName: "Emotions & Feelings",
   },
 ];

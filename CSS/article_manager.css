@@ -1,109 +1,148 @@
 body {
-    margin: 0;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    background: #f3f4f8;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #f3f4f8;
 }
 
 .admin-layout {
-    display: flex;
+  display: flex;
 }
 
 .admin-main {
-    flex: 1;
-    padding: 18px 20px;
+  flex: 1;
+  padding: 18px 20px;
 }
 
 .article-panel {
-    background: #ffffff;
-    border: 1px solid #eaecf3;
-    min-height: calc(100vh - 104px);
-    padding: 28px 26px;
+  background: #ffffff;
+  border: 1px solid #eaecf3;
+  min-height: calc(100vh - 104px);
+  padding: 28px 26px;
 }
 
 .article-panel__head {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .article-panel__create-btn {
-    display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    background: rgb(101,85,143);
-    border-radius: 999px;
-    font-size: 12px;
-    padding: 10px 20px;
-    margin-bottom: 8px;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background: rgb(101, 85, 143);
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 10px 20px;
+  margin-bottom: 8px;
 }
 
 .article-panel__title {
-    text-align: center;
-    margin: 0 0 12px;
-    font-size: 40px;
+  text-align: center;
+  margin: 0 0 12px;
+  font-size: 40px;
 }
 
 .article-table-wrapper {
-    border: 1px solid #e4e7ec;
+  border: 1px solid #e4e7ec;
 }
 
 .article-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
 }
 
 .article-table th,
 .article-table td {
-    border-bottom: 1px solid #e4e7ec;
-    padding: 10px 8px;
-    text-align: left;
+  border-bottom: 1px solid #e4e7ec;
+  padding: 10px 8px;
+  text-align: left;
 }
 
 .article-image {
-    width: 54px;
-    height: 38px;
-    border-radius: 6px;
-    object-fit: cover;
+  width: 54px;
+  height: 38px;
+  border-radius: 6px;
+  object-fit: cover;
 }
 
 .article-status {
-    display: inline-block;
-    border-radius: 3px;
-    padding: 3px 8px;
-    font-weight: 600;
-    font-size: 10px;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 3px 8px;
+  font-weight: 600;
+  font-size: 10px;
 }
 
 .article-status--public {
-    color: #065F46;
-    background: #D1FAE5;
+  color: #065f46;
+  background: #d1fae5;
 }
 
 .article-status--private {
-    color: #991B1B;
-    background: #FEE2E2;
+  color: #991b1b;
+  background: #fee2e2;
 }
 
 .article-status-select {
-    border: 1px solid #d0d5dd;
-    border-radius: 4px;
-    font-size: 11px;
-    padding: 5px 8px;
-    background: #EFEFEF;
+  border: 1px solid #d0d5dd;
+  border-radius: 4px;
+  font-size: 11px;
+  padding: 5px 8px;
+  background: #efefef;
 }
 
 .article-action {
-    border: none;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 11px;
-    padding: 6px 10px;
-    cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 11px;
+  padding: 6px 10px;
+  cursor: pointer;
 }
 
 .article-action--edit {
-    background: #44EF55;
+  background: #44ef55;
 }
 
 .article-action--delete {
-    background: #EF4444;
+  background: #ef4444;
+}
+
+/* Style cho Search Box trong Admin Panel */
+.admin-search-box {
+  margin: 20px auto;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.admin-search-box input {
+  width: 100%;
+  padding: 10px 80px 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+}
+
+.admin-search-box i.fa-magnifying-glass {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+.admin-search-box .voice-search-btn {
+  position: absolute;
+  right: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+}
+
+.admin-search-box .voice-search-btn.is-listening {
+  color: #ef4444;
+  animation: pulse-red 1s infinite;
 }

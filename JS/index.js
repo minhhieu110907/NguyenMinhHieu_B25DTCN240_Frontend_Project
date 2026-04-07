@@ -1,142 +1,249 @@
-import {
-  checkLogin,
-  getCurrentUser,
-  removeCurrentUser,
-  getPost,
-} from "./storage.js";
-import { showToast } from "./ui-manager.js";
+import { checkLogin, getCurrentUser, getPost, getCategories } from "./storage.js";
 import { initMenuDropdownActions } from "./menu-dropdown_action.js";
 import { initAuthGuard } from "./auth_guard.js";
 
-// QUẢN LÝ GIAO DIỆN AUTH
-function syncHeaderDropdown(user) {
-  const avatarImg = document.querySelector("#headerUserAvatar");
-  const nameEl = document.querySelector("#headerUserName");
-  const emailEl = document.querySelector("#headerUserEmail");
-  if (avatarImg)
-    avatarImg.src = user?.avatar || "../ASSET/icon/default-avatar.png";
-  if (nameEl)
-    nameEl.textContent =
-      `${user?.firstname ?? ""} ${user?.lastname ?? ""}`.trim() || "User";
-  if (emailEl) emailEl.textContent = user?.email || "";
+const searchInput = document.querySelector("#searchInput");
+const voiceSearchBtn = document.querySelector("#voiceSearchBtn");
+const paginationNumber = document.querySelector("#blogPaginationNumbers");
+const preBtn = document.querySelector("#blogPrevBtn");
+const nextBtn = document.querySelector("#blogNextBtn");
+const categoryContainer = document.querySelector("#categoryContainer");
+
+let currentPage = 1;
+let pageSize = 6;
+let currentList = []; 
+
+function handlePostClick(e) {
+    const card = e.target.closest(".post-card");
+    if (card) {
+        const id = card.dataset.id;
+        localStorage.setItem("viewPostId", id);
+        localStorage.setItem("postSource", "index.html");
+        window.location.href = "./PAGE/details_post.html";
+    }
 }
 
-function setAuthUI(isLoggedIn) {
-  const buttons = document.querySelector("#headerAuthButtons");
-  const dropdown = document.querySelector("#headerUserDropdown");
-  if (buttons) buttons.style.display = isLoggedIn ? "none" : "block";
-  if (dropdown) dropdown.style.display = isLoggedIn ? "block" : "none";
+function updateAuthUI(user) {
+    const buttons = document.querySelector("#headerAuthButtons");
+    const dropdown = document.querySelector("#headerUserDropdown");
+    const avatarImg = document.querySelector("#headerUserAvatar");
+    const nameEl = document.querySelector("#headerUserName");
+    const emailEl = document.querySelector("#headerUserEmail");
+
+    if (user && checkLogin()) {
+        if (buttons) buttons.style.display = "none";
+        if (dropdown) dropdown.style.display = "block";
+        if (avatarImg) avatarImg.src = user.avatar || "./ASSET/icon/default-avatar.png";
+        if (nameEl) nameEl.textContent = `${user.firstname} ${user.lastname}`.trim();
+        if (emailEl) emailEl.textContent = user.email;
+        initMenuDropdownActions(document);
+    } else {
+        if (buttons) buttons.style.display = "block";
+        if (dropdown) dropdown.style.display = "none";
+    }
 }
 
-// LOGIC RENDER BÀI VIẾT
+function renderCategoryFilter() {
+    if (!categoryContainer) return;
+    const categories = getCategories(); 
+    let html = `<a href="#" class="active" data-category="All">All posts</a>`;
+    categories.forEach(cat => {
+        html += `<a href="#" data-category="${cat.categoryName}">${cat.categoryName}</a>`;
+    });
+    categoryContainer.innerHTML = html;
+}
 
-// 1. Render Recent Posts
 function renderRecentPosts(posts) {
-  const container = document.querySelector("#recentPostsContainer");
-  if (!container || posts.length === 0 || !posts) return;
+    const container = document.querySelector("#recentPostsContainer");
+    if (!container || !posts || posts.length === 0) return;
+    const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const recent = sorted.slice(0, 3);
+    const date0 = (recent[0].date || "0000-00-00").split(" ")[0];
 
-  // Sắp xếp bài mới nhất dựa trên trường 'date'
-  const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
-  const recent = sorted.slice(0, 3);
+    let html = `
+      <div class="recent-large">
+        <div class="post-card large" data-id="${recent[0].id}" style="cursor: pointer;">
+          <img src="${recent[0].image}" alt="${recent[0].title}">
+          <div class="post-info">
+            <span class="date">Date: ${date0}</span>
+            <h3>${recent[0].title}</h3>
+            <p>${(recent[0].content || "").substring(0, 120)}...</p>
+            <span class="category">${recent[0].entries}</span>
+          </div>
+        </div>
+      </div>`;
 
-  let html = "";
+    if (recent.length > 1) {
+        html += `<div class="recent-small">`;
+        for (let i = 1; i < recent.length; i++) {
+            const d = (recent[i].date || "0000-00-00").split(" ")[0];
+            html += `
+              <div class="post-card small" data-id="${recent[i].id}" style="cursor: pointer;">
+                <img src="${recent[i].image}" alt="${recent[i].title}">
+                <div class="post-info">
+                  <span class="date">Date: ${d}</span>
+                  <h3>${recent[i].title}</h3>
+                  <p>${(recent[i].content || "").substring(0, 80)}...</p>
+                  <span class="category">${recent[i].entries}</span>
+                </div>
+              </div>`;
+        }
+        html += `</div>`;
+    }
+    container.innerHTML = html;
+    container.addEventListener("click", handlePostClick);
+}
 
-  // Bài đầu tiên (Large)
-  if (recent[0]) {
-    html += `
-            <div class="recent-large">
-                <div class="post-card large">
-                    <img src="../ASSET/images/${recent[0].image}" alt="${recent[0].title}">
-                    <div class="post-info">
-                        <span class="date">Date: ${recent[0].date.split(" ")[0]}</span>
-                        <h3>${recent[0].title}</h3>
-                        <p> ${(recent[0].content || "").substring(0, 120)}...</p>
-                        <span class="category">${recent[0].entries}</span>
+function renderAllPosts(posts) {
+    const container = document.querySelector("#allPostsContainer");
+    if (!container) return;
+    if (posts.length === 0) {
+        container.innerHTML = "<p class='no-post'>Không tìm thấy bài viết nào.</p>";
+        return;
+    }
+    container.innerHTML = posts.map(post => {
+        const displayDate = (post.date || "0000-00-00").split(" ")[0];
+        return `
+            <div class="post-card" data-id="${post.id}" style="cursor: pointer;">
+                <img src="${post.image}" alt="${post.title}">
+                <div class="post-info">
+                    <span class="date">Date: ${displayDate}</span>
+                    <div class="article-title-row">
+                        <h3 class="article-title">${post.title}</h3>
                     </div>
+                    <span class="category">${post.entries}</span>
                 </div>
             </div>
         `;
-  }
+    }).join("");
+    container.addEventListener("click", handlePostClick);
+}
 
-  // Hai bài tiếp theo (Small)
-  if (recent.length > 1) {
-    html += `<div class="recent-small">`;
-    for (let i = 1; i < recent.length; i++) {
-      html += `
-                <div class="post-card small">
-                    <img src="../ASSET/images/${recent[i].image}" alt="${recent[i].title}">
-                    <div class="post-info">
-                        <span class="date">Date: ${recent[i].date.split(" ")[0]}</span>
-                        <h3>${recent[i].title}</h3>
-                        <p>${recent[i].content.substring(0, 80)}...</p>
-                        <span class="category">${recent[i].entries}</span>
-                    </div>
-                </div>
-            `;
+function paginate(arr) {
+    let totalPage = Math.ceil(arr.length / pageSize);
+    let startIndex = (currentPage - 1) * pageSize;
+    return { totalPage, currentItems: arr.slice(startIndex, startIndex + pageSize) };
+}
+
+function applyPagination(list = currentList) {
+    currentList = list;
+    let { totalPage, currentItems } = paginate(list);
+    if (currentPage > totalPage) currentPage = totalPage || 1;
+    renderAllPosts(currentItems);
+    paginationRender(totalPage, list);
+}
+
+function paginationRender(totalPage, list) {
+    let html = "";
+    if (totalPage <= 1) {
+        paginationNumber.innerHTML = "";
+        preBtn.style.visibility = "hidden";
+        nextBtn.style.visibility = "hidden";
+        return;
     }
-    html += `</div>`;
-  }
-
-  container.innerHTML = html;
+    preBtn.style.visibility = "visible";
+    nextBtn.style.visibility = "visible";
+    for (let i = 1; i <= totalPage; i++) {
+        html += `<button class="admin-pagination__number ${i === currentPage ? "admin-pagination__number--active" : ""}" data-page="${i}">${i}</button>`;
+    }
+    paginationNumber.innerHTML = html;
+    preBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPage;
+    document.querySelectorAll(".admin-pagination__number").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            currentPage = Number(btn.dataset.page);
+            applyPagination(list);
+            window.scrollTo({ top: 800, behavior: "smooth" });
+        });
+    });
 }
 
-// 2. Render All Posts Grid
-function renderAllPosts(posts) {
-  const container = document.querySelector("#allPostsContainer");
-  if (!container) return;
+preBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        applyPagination();
+    }
+});
 
-  if (posts.length === 0) {
-    container.innerHTML = "<p>No posts found.</p>";
-    return;
-  }
+nextBtn.addEventListener("click", () => {
+    const totalPage = Math.ceil(currentList.length / pageSize);
+    if (currentPage < totalPage) {
+        currentPage++;
+        applyPagination();
+    }
+});
 
-  container.innerHTML = posts
-    .map(
-      (post) => `
-        <div class="post-card">
-            <img src="../ASSET/images/${post.image}" alt="${post.title}">
-            <div class="post-info">
-                <span class="date">Date: ${post.date.split(" ")[0]}</span>
-                <h3>${post.title}</h3>
-                <span class="category">${post.entries}</span>
-            </div>
-        </div>
-    `,
-    )
-    .join("");
+function initCategoryFilter() {
+    if (!categoryContainer) return;
+    categoryContainer.addEventListener("click", (e) => {
+        const target = e.target.closest("a");
+        if (!target) return;
+        e.preventDefault();
+        document.querySelectorAll("#categoryContainer a").forEach((link) => link.classList.remove("active"));
+        target.classList.add("active");
+        const selectedCategory = target.dataset.category;
+        const allPosts = getPost();
+        currentPage = 1;
+        const filtered = selectedCategory === "All" ? allPosts : allPosts.filter((post) => post.entries === selectedCategory);
+        applyPagination(filtered);
+    });
 }
 
-// INIT 
-window.addEventListener("DOMContentLoaded", function () {
-  initAuthGuard();
-  const user = getCurrentUser();
-  const sessionOk = checkLogin();
-  const allPosts = getPost();
+function initSearch() {
+    if (!searchInput) return;
+    searchInput.addEventListener("input", function () {
+        const keyword = searchInput.value.toLowerCase().trim();
+        const allPosts = getPost();
+        currentPage = 1;
+        const filtered = allPosts.filter((p) => p.title.toLowerCase().includes(keyword));
+        applyPagination(filtered);
+    });
+}
 
-  // CHECK LOGIN
-  if (user && !sessionOk) {
-    showToast("Phiên đăng nhập đã hết hạn.", "error");
-    removeCurrentUser();
-    window.location.href = "../PAGE/login.html";
-    return;
-  }
+// CHỨC NĂNG VOICE SEARCH
+function initVoiceSearch() {
+    if (!voiceSearchBtn || !searchInput) return;
 
-  // CHECK BANNED
-    if (user && user.status === "banned") {
-    removeCurrentUser();
-    window.location.href = "../PAGE/login.html";
-    return;
-  }
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+        voiceSearchBtn.style.display = "none";
+        return;
+    }
 
-  if (sessionOk && user) {
-    setAuthUI(true);
-    syncHeaderDropdown(user);
-    initMenuDropdownActions(document);
-  } else {
-    setAuthUI(false);
-  }
-  // RENDER POST
-  renderRecentPosts(allPosts);  
-  renderAllPosts(allPosts);
+    const recognition = new SpeechRecognition();
+    recognition.lang = "vi-VN";
+    recognition.continuous = false;
 
+    voiceSearchBtn.addEventListener("click", () => {
+        recognition.start();
+        voiceSearchBtn.classList.add("is-listening");
+    });
+
+    recognition.onresult = (event) => {
+        const result = event.results[0][0].transcript;
+        searchInput.value = result;
+        voiceSearchBtn.classList.remove("is-listening");
+        
+        // Tự động tìm kiếm ngay lập tức
+        const allPosts = getPost();
+        currentPage = 1;
+        const filtered = allPosts.filter((p) => p.title.toLowerCase().includes(result.toLowerCase().trim()));
+        applyPagination(filtered);
+    };
+
+    recognition.onerror = () => voiceSearchBtn.classList.remove("is-listening");
+    recognition.onend = () => voiceSearchBtn.classList.remove("is-listening");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    initAuthGuard();
+    const user = getCurrentUser();
+    const allPosts = getPost();
+    updateAuthUI(user);
+    renderCategoryFilter(); 
+    renderRecentPosts(allPosts);
+    applyPagination(allPosts);
+    initCategoryFilter();
+    initSearch();
+    initVoiceSearch();
 });

@@ -13,7 +13,7 @@ export function checkUserStatus() {
 
   const users = getUser();
   // FIND LASTEST DATA
-  const latestUser = users.find((u) => u.id === currentUser.id);
+  const latestUser = users.find((u) => Number(u.id) === Number(currentUser.id));
 
   // CHECK STATUS
   if (!latestUser || latestUser.status === "banned") {
@@ -21,7 +21,7 @@ export function checkUserStatus() {
     removeCurrentUser();
     showConfirmModal(
       "Tài khoản bị khóa", 
-      "Tài khoản của bạn đã bị khóa hoặc không tồn tại trên hệ thống. Vui lòng đăng nhập lại.", 
+      "Tài khoản của bạn đã bị khóa ", 
       () => {
         redirectToLogin();
       }
@@ -30,7 +30,7 @@ export function checkUserStatus() {
     // Backup: When turn off Modal, auto back to login
     setTimeout(() => {
       redirectToLogin();
-    }, 10000);
+    }, 7000);
     
     return;
   }
@@ -40,7 +40,6 @@ export function checkUserStatus() {
 }
 
 // REDIRECT TO LOGIN
-
 function redirectToLogin() {
   // CHECK POSITION
   const isAtPageFolder = window.location.pathname.includes("/PAGE/");
@@ -56,15 +55,13 @@ function redirectToLogin() {
 
 
 export function initAuthGuard() {
- 
   requireAuth();
-
   // CHECK 5S
   setInterval(() => {
     checkUserStatus();
   }, 5000);
 
-  
+  // GET ACTIONS FROM OTHER TAB
   window.addEventListener("storage", (e) => {
     if (e.key === "users" || e.key === "currentUser") {
       checkUserStatus();

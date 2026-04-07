@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIKKEI_EDU_BLOG</title>
     <link rel="stylesheet" href="../CSS/index.css">
-    <link rel="stylesheet" href="../CSS/reponsive.css">
+    <link rel="stylesheet" href="../CSS/responsive.css">
     <link rel="stylesheet" href="../CSS/ui-manager.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -20,6 +20,7 @@
 
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search for articles">
+            <i class="fa-solid fa-microphone voice-search-btn" id="voiceSearchBtn" title="Tìm kiếm bằng giọng nói"></i>
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
         </div>
 
@@ -51,14 +52,14 @@
         <section class="section recent-section">
             <h2 class="section-title">Recent blog posts</h2>
             <div class="recent-grid" id="recentPostsContainer">
-                </div>
+            </div>
         </section>
 
         <section class="section">
             <div class="section-header">
-                <h2>All blog posts</h2>
+                <h2>All blog posts <a href="../PAGE/allmypost.html">All my posts</a></h2>
                 <div class="categories" id="categoryContainer">
-                    <a href="./PAGE/allmypost.html" class="active" data-category="All">All my posts</a>
+                    <a href="" class="active" data-category="All">All posts</a>
                     <a href="#" data-category="Daily Journal">Daily Journal</a>
                     <a href="#" data-category="Work & Career">Work & Career</a>
                     <a href="#" data-category="Personal Thoughts">Personal Thoughts</a>
@@ -67,28 +68,73 @@
             </div>
 
             <div class="posts-grid" id="allPostsContainer">
+            </div>
+
+            <div class="admin-pagination" id="blogPagination">
+                <button class="admin-pagination__button" id="blogPrevBtn" type="button">
+                    <i class="fa-solid fa-arrow-left"></i> <span>Previous</span>
+                </button>
+
+                <div class="admin-pagination__numbers" id="blogPaginationNumbers">
                 </div>
 
-            <div class="pagination">
-                <a href="#" class="prev">← Previous</a>
-                <div class="page-numbers">
-                    <span class="active">1</span>
-                    <span>2</span>
-                    <span>3</span>
-                </div>
-                <a href="#" class="next">Next →</a>
+                <button class="admin-pagination__button" id="blogNextBtn" type="button">
+                    <span>Next</span> <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
         </section>
     </div>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand"><h1>MY BLOG</h1></div>
-            <div class="footer-columns">
-                 </div>
+
+
+    <div class="footer">
+        <h1>MY BLOG</h1>
+
+        <div class="about">
+            <p>
+                <strong>About Rareblocks</strong>
+            </p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan porta lectus
+                ridiculus in mattis. Netus sodales in volutpat ullamcorper amet adipiscing fermentum.</p>
         </div>
-    </footer>
+
+        <div class="Collumn">
+            <h4>Company</h4>
+
+            <a href="">About</a>
+            <a href="">Features</a>
+            <a href="">Works</a>
+            <a href="">Career</a>
+        </div>
+
+        <div class="collumn">
+            <h4>Help</h4>
+
+            <a href="">Customer Support</a>
+            <a href="">Delivery Details</a>
+            <a href="">Term & Conditions</a>
+            <a href="">Privacy Policy</a>
+        </div>
+
+        <div class="collumn">
+            <h4>Resources</h4>
+
+            <a href="">Free eBooks</a>
+            <a href="">Development Tutorial</a>
+            <a href="">How to - Blog</a>
+            <a href="">Youtube Playlist</a>
+        </div>
+    </div>
+
+    <div class="linkto">
+        <a href=""><i class="fa-brands fa-twitter"></i></a>
+        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+        <a href=""><i class="fa-brands fa-instagram"></i></a>
+        <a href=""><i class="fa-brands fa-github"></i></a>
+    </div>
 
     <script type="module" src="../JS/index.js"></script>
 </body>
+
 </html>
